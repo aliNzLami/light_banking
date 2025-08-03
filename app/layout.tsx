@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, IBM_Plex_Serif } from "next/font/google";
 import "../assets/styles/main.css";
+import "../assets/styles/corePanel.css";
+import CorePanel from "@/components/CorePanel/CorePanel";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -31,7 +33,10 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${ibm.variable} antialiased`}
       >
-        {children}
+        <CorePanel />
+        <div className="custom_container">
+          {children}
+        </div>
       </body>
     </html>
   );

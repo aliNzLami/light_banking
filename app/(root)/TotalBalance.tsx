@@ -1,5 +1,5 @@
-import CountUpAnimate from "./CountUpAnimate"
-import DoughnutChart from "./DoughnutChart"
+import CountUpAnimate from "@/components/CountUpAnimate"
+import DoughnutChart from "@/components/DoughnutChart"
 
 function TotalBalance({accounts, banks, balance}: TotalBalanceProps) {
   return (

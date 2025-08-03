@@ -1,0 +1,65 @@
+:root {
+    --blue1: rgb(0,147,213);
+    --blue2: #0747b6;
+    
+    --main-gray: rgb(33,33,33);
+    --main-black: rgb(17,17,17);
+    --main-gray-text: rgb(179,179,179);
+    --main-light-gray: rgb(83,83,83);
+}
+
+body {
+    /* background-color: var(--main-black); */
+}
+
+.sidebar {
+    position: fixed;
+    padding: 30px;
+    height: 100%;
+} 
+
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    } 
+}
+
+.topNav {
+    position: fixed;
+    padding: 10px 1rem;
+    width: 100%;
+}
+
+.sidebar_Logo {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.topNav {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .topNav {
+        display: flex;
+    }
+    .sidebar_Logo {
+        display: none;
+    }
+}
+
+
+.hoverWhite {
+    transition: 0.3s;
+}
+
+.hoverWhite:hover {
+    color: white;
+}
+
+.sidebarActive {
+    background-color: var(--blue2);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
