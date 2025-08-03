@@ -1,3 +1,5 @@
+import CorePanel from "@/components/CorePanel/CorePanel";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -5,7 +7,10 @@ export default function RootLayout({
 }>) {
   return (
     <main>
-      { children }
+        <CorePanel />
+        <div className="custom_container">
+          { children }
+        </div>
     </main>
   );
 }

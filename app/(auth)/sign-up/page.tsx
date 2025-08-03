@@ -1,11 +1,11 @@
 import AuthForm from "../AuthForm"
 
- function Login() {
-    return (
+function SignUp() {
+  return (
       <section className="flex-center size-full max-sm:px-6">
-        <AuthForm type="login" />
+        <AuthForm type="signUp" />
       </section>
-    )
+  )
 }
 
-export default Login
+export default SignUp
