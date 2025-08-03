@@ -7,11 +7,6 @@
     --main-gray-text: rgb(179,179,179);
     --main-light-gray: rgb(83,83,83);
 }
-
-body {
-    /* background-color: var(--main-black); */
-}
-
 .sidebar {
     position: fixed;
     padding: 30px;
@@ -48,13 +43,10 @@ body {
     }
 }
 
-
-.hoverWhite {
-    transition: 0.3s;
-}
-
-.hoverWhite:hover {
-    color: white;
+.fontLogo {
+    font-weight: bolder;
+    font-style: italic;
+    color: var(--blue2);
 }
 
 .sidebarActive {

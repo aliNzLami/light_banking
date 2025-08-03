@@ -1,12 +1,11 @@
 'use client';
-import React, { useState, useEffect, Component, ReactElement } from 'react';
+import React, { useState, useEffect } from 'react';
 import sidebarIcon from "@/assets/icons/hamburger.svg";
 import Image from 'next/image';
 
-function Offcanvas( { content }: {content: ReactElement} ) {
+function Offcanvas( { content, isOpen, setIsOpen = () => {} }: OffcanvasProps ) {
 
-  const [isOpen, setIsOpen] = useState(false); 
-  const [isVisible, setIsVisible] = useState(false); 
+  const [isVisible, setIsVisible] = useState(false);
 
   const toggleOffcanvas = () => {
     if (isOpen) {

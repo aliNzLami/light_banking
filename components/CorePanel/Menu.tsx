@@ -8,8 +8,7 @@ import myBanks_icon from "@/assets/icons/dollar-circle.svg";
 import transaction_icon from "@/assets/icons/transaction.svg";
 import payment_icon from "@/assets/icons/money-send.svg";
 
-function Menu() {
-    
+function Menu({ onClickItem = () => {} }: {onClickItem: Function}) {
     
     const currentURL = usePathname();
 
@@ -42,9 +41,10 @@ function Menu() {
                 menuItems.map(item => {
                     return(
                         <Link 
+                            onClick={() => onClickItem()}
                             href={item.href} 
                             key={item.name}
-                            className={`${currentURL === item.href ? "sidebarActive" : ""} flex gap-3 items-center p-3 2xl:p-4 rounded-lg`}
+                            className={`${currentURL === item.href ? "sidebarActive" : ""} flex gap-3 items-center p-3 2xl:p-4 rounded-lg transition-[0.3s]`}
                         >
                             <div className="relative flex align-center">
                                 <Image

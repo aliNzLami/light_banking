@@ -6,8 +6,11 @@ function Sidebar() {
   return (
     <div className="sidebar shadow-md">
         <nav className="flex flex-col gap-4">
-            <div className="sidebar_Logo flex justify-center">
+            <div className="sidebar_Logo items-center justify-center">
                 <Image alt="One More Light Logo" src={logo.src} width={65} height={55} />
+                <span className="ms-3 fontLogo">
+                  Light Banking
+                </span>
             </div>
             <Menu />
         </nav>

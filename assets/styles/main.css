@@ -43,3 +43,11 @@ body {
   width: 100% !important;
   height: fit-content !important;
 }
+
+.hoverWhite {
+  transition: 0.3s;
+}
+
+.hoverWhite:hover {
+  color: white;
+}

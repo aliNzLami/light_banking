@@ -1,3 +1,5 @@
+import { ReactElement } from "react";
+
 declare interface HeaderTitleProps {
     title: string,
     description: string
@@ -29,3 +31,9 @@ declare type User = {
     dateOfBirth: string;
     ssn: string;
 };
+
+declare interface OffcanvasProps {
+    content: ReactElement,
+    isOpen: Boolean,
+    setIsOpen: Function
+}

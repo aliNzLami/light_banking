@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import { Inter, IBM_Plex_Serif } from "next/font/google";
+// import { Inter, IBM_Plex_Serif } from "next/font/google";
 import "../assets/styles/main.css";
 import "../assets/styles/corePanel.css";
 import CorePanel from "@/components/CorePanel/CorePanel";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
+// const inter = Inter({
+//   variable: "--font-inter",
+//   subsets: ["latin"],
+// });
 
-const ibm = IBM_Plex_Serif({
-  variable: "--font-ibm-plex-serif",
-  weight: ['400', '700'],
-  subsets: ["latin"],
-});
+// const ibm = IBM_Plex_Serif({
+//   variable: "--font-ibm-plex-serif",
+//   weight: ['400', '700'],
+//   subsets: ["latin"],
+// });
 
 export const metadata: Metadata = {
   title: "One More Light",
@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${ibm.variable} antialiased`}
+        // className={`${inter.variable} ${ibm.variable} antialiased`}
       >
         <CorePanel />
         <div className="custom_container">
