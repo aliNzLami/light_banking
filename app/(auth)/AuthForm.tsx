@@ -1,14 +1,14 @@
 "use client"
+import { useState } from "react"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-
+import { signUp_API, login_API } from "@/lib/actions/users.actions"
 import Image from "next/image"
 import logo from "@/assets/icons/logo.jpg"
 import CustomForm from "@/components/CustomForm"
-import { useState } from "react"
-import Link from "next/link"
 import AuthNav from "./AuthNav"
+import { redirect } from "next/navigation"
 
 
 const formSchema_login = z.object({
@@ -21,15 +21,17 @@ const formSchema_signUp = z.object({
   password: z.string().trim().min(8),
   firstName: z.string().trim().min(3), 
   lastName: z.string().trim().min(3), 
-  address: z.string().trim().max(50), 
+  address: z.string().trim().optional(), 
   state: z.string().trim().min(2).max(2), 
   postalCode: z.string().trim().min(3).max(6), 
-  nid: z.string().trim().optional(), 
-  dateOfBirth: z.string().trim().optional(), 
+  nid: z.string().trim().min(3).max(100), 
+  dateOfBirth: z.string().trim().optional(),
 })
 
 function AuthForm({type}: {type: string}) {
 
+
+    // ----------------------------- STATES ----------------------------- //
     const [isLoading, setIsLoading] = useState(false);
 
     // ----------------------------- INPUTS ----------------------------- //
@@ -128,12 +130,27 @@ function AuthForm({type}: {type: string}) {
 
     // ----------------------------- FUNCTIONS ----------------------------- //
 
-    function onSubmit_login(values: z.infer<typeof formSchema_login>) {
-      console.log(values);
+    const onSubmit_login = async (values: z.infer<typeof formSchema_login>) => {
+      setIsLoading(true);
+      login_API(values)
+      .then(msg => {
+        window.location.reload();
+      })
+      .catch(err => {
+        // toastify('Check your email and password again');
+        setIsLoading(false);
+      })
     }
 
     function onSubmit_signUp(values: z.infer<typeof formSchema_signUp>) {
-      console.log(values)
+      setIsLoading(true);
+      signUp_API(values)
+      .then(msg => {
+        window.location.reload();
+      })
+      .catch(err => {
+        setIsLoading(false);
+      })
     }
 
     return (

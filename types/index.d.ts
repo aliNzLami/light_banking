@@ -52,4 +52,3 @@ declare interface FormProps {
     form: Object,
     isLoading: boolean
 }
-

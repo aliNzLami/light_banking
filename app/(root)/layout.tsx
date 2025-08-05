@@ -1,16 +1,42 @@
+'use client'
 import CorePanel from "@/components/CorePanel/CorePanel";
+import { redirect } from "next/navigation";
+import { getLoggedInUser } from "@/lib/appwrite";
+import { useEffect, useState } from "react";
+import LoadingPage from "@/components/LoadingPage";
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{children: React.ReactNode;}>) {
+
+  const [loading, setLoading] = useState(true);
+  
+  const checkUser = async () => {
+    const user = await getLoggedInUser();
+    if(user === null) {
+      redirect("/sign-up");
+    }
+    else {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    checkUser();
+  }, [])
+  
   return (
     <main>
-        <CorePanel />
-        <div className="custom_container">
-          { children }
-        </div>
+        {
+          loading
+          ?
+            <LoadingPage />
+          :
+          <>
+            <CorePanel />
+            <div className="custom_container">
+              { children }
+            </div>
+          </>
+        }
     </main>
   );
 }
