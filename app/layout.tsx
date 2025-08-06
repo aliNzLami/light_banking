@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, IBM_Plex_Serif } from "next/font/google";
 import "../assets/styles/main.css";
 import "../assets/styles/corePanel.css";
+import ReduxProvider from "@/lib/redux/provider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -28,7 +29,9 @@ export default function RootLayout({ children,}: Readonly<{children: React.React
         <body
           className={`${inter.variable} ${ibm.variable} antialiased`}
         >
-          {children}
+          <ReduxProvider>
+            {children}
+          </ReduxProvider>
         </body>
       </html>
   );

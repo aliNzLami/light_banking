@@ -12,7 +12,7 @@ function BankCard({bankInfo, fullName}: {bankInfo: Object, fullName: string}) {
                 <div className="relative z-10 flex size-full max-w-[228px] flex-col justify-between rounded-l-[20px] bg-gray-700 bg-blue-gradient px-5 pb-4 pt-5">
                     <div>
                         <span className="text-[16px] leading-[24px] font-bold text-white">
-                            USER
+                            { fullName }
                         </span>
                         <p className="font-ibm-plex-serif font-black text-white">
                             123456
@@ -21,7 +21,7 @@ function BankCard({bankInfo, fullName}: {bankInfo: Object, fullName: string}) {
                     <article className="flex flex-col gap-2">
                         <div className="flex justify-between">
                             <span className="text-[12px] leading-[16px] font-semibold text-white"> 
-                                USER
+                                { fullName }
                             </span>
                             <span className="font-semibold text-white">
                                 <span className="text-[10px]">

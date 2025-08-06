@@ -3,7 +3,7 @@ import Link from "next/link"
 import plusIcon from "@/assets/icons/plus.svg";
 import BankCard from "@/components/BankCard";
 
-function BanksRightSide() {
+function BanksRightSide( { userInfo} : { userInfo: Object }) {
   return (
     <>
             <div className="flex flex-col justify-between gap-8 px-6 py-8">
@@ -32,7 +32,7 @@ function BanksRightSide() {
                     <div className="relative z-10">
                         <BankCard 
                             bankInfo={{}}
-                            fullName={""}
+                            fullName={userInfo?.name??""}
                         />
                     </div>
                     {
@@ -41,7 +41,7 @@ function BanksRightSide() {
                         <div className="absolute right-0 top-8 z-0 w-[90%]">
                             <BankCard 
                                 bankInfo={{}}
-                                fullName={""}
+                                fullName={userInfo?.name??""}
                             />
                         </div>
                     }

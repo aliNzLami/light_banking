@@ -1,12 +1,17 @@
+'use client'
+
 import Image from "next/image"
 import signOutIcon from "@/assets/icons/logout.svg"
 import { signOut_API } from "@/lib/actions/users.actions"
 import Modal from "../Modal"
 import { useState } from "react"
 import SubmitBtn from "../SubmitBtn"
+import { useSelector } from "react-redux";
+import { RootState } from "@/lib/redux/store";
 
 function SidebarFooter() {
 
+    const userInfo = useSelector((state: RootState) => state.userInfo.value);
     const [showModal, setShowModal] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -44,16 +49,16 @@ function SidebarFooter() {
         <footer className="flex cursor-pointer items-center justify-between gap-2 py-6" onClick={() => setShowModal(true)}>
           <div className="flex size-10 items-center justify-center rounded-full bg-gray-200">
             <p className="text-xl font-bold text-gray-700">
-              U
+              {userInfo?.name[0]??""}
             </p>
           </div>
 
           <div className="flex flex-1 flex-col justify-center text-b&w">
             <span className="text-[14px] leading-[20px] truncate font-normal text-gray-700 text-b&w font-semibold">
-              USER
+              {userInfo?.name??""}
             </span>
             <span className="text-[14px] leading-[20px] truncate font-normal text-gray-600 text-b&w font-normal">
-              email@e.cccom
+              {userInfo?.email??""}
             </span>
           </div>
 

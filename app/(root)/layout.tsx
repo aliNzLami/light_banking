@@ -5,10 +5,14 @@ import { getLoggedInUser } from "@/lib/appwrite";
 import { useEffect, useState } from "react";
 import LoadingPage from "@/components/LoadingPage";
 
+import { UseSelector, useDispatch, useSelector } from "react-redux";
+import { setNewUser } from "@/lib/redux/userSlice";
+
 export default function RootLayout({ children }: Readonly<{children: React.ReactNode;}>) {
 
+  const dispatch = useDispatch();
+
   const [loading, setLoading] = useState(true);
-  const [userInfo, setUserInfo] = useState({});
   
   const checkUser = async () => {
     const user = await getLoggedInUser();
@@ -16,7 +20,7 @@ export default function RootLayout({ children }: Readonly<{children: React.React
       redirect("/sign-up");
     }
     else {
-      setUserInfo({...user});
+      dispatch(setNewUser(user));
       setLoading(false);
     }
   }
