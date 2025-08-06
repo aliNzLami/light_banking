@@ -196,6 +196,7 @@ function AuthForm({type}: {type: string}) {
                       inputsList={login}
                       onSubmit={onSubmit_login}
                       isLoading={isLoading}
+                      buttonText={"Login"}
                     />
                 :
                   <div className="signUp">
@@ -204,6 +205,7 @@ function AuthForm({type}: {type: string}) {
                         inputsList={signUp}
                         onSubmit={onSubmit_signUp}
                         isLoading={isLoading}
+                        buttonText={"Create Account"}
                     />
                   </div>
               }
@@ -215,7 +217,7 @@ function AuthForm({type}: {type: string}) {
               ?
                   <AuthNav
                     text="Don't have an account?"
-                    button="Sign Up"
+                    button="Create Account"
                     href="/sign-up"
                   />
               :

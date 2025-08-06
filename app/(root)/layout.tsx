@@ -8,6 +8,7 @@ import LoadingPage from "@/components/LoadingPage";
 export default function RootLayout({ children }: Readonly<{children: React.ReactNode;}>) {
 
   const [loading, setLoading] = useState(true);
+  const [userInfo, setUserInfo] = useState({});
   
   const checkUser = async () => {
     const user = await getLoggedInUser();
@@ -15,6 +16,7 @@ export default function RootLayout({ children }: Readonly<{children: React.React
       redirect("/sign-up");
     }
     else {
+      setUserInfo({...user});
       setLoading(false);
     }
   }
@@ -22,7 +24,7 @@ export default function RootLayout({ children }: Readonly<{children: React.React
   useEffect(() => {
     checkUser();
   }, [])
-  
+
   return (
     <main>
         {

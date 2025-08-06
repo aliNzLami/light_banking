@@ -50,5 +50,6 @@ declare interface FormProps {
     inputsList: array, 
     onSubmit: Function,
     form: Object,
-    isLoading: boolean
+    isLoading: boolean,
+    buttonText: string
 }

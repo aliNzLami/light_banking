@@ -112,3 +112,7 @@ body {
       "password";
   }
 }
+
+.bg-blue-gradient {
+  background: linear-gradient(var(--blue2), var(--blue1));
+}

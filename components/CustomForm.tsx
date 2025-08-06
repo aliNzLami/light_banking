@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Form } from "@/components/ui/form"
 import CustomInput from "./CustomInput"
 
-function CustomForm({ inputsList, form, onSubmit, isLoading }: FormProps) {
+function CustomForm({ inputsList, form, onSubmit, isLoading, buttonText = "Submit" }: FormProps) {
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -28,11 +28,9 @@ function CustomForm({ inputsList, form, onSubmit, isLoading }: FormProps) {
                     {
                         isLoading
                         ?
-                            <div className="animate-spin spin-white w-[20px] h-[20px]">
-
-                            </div>
+                            <div className="animate-spin spin-white w-[20px] h-[20px]"></div>
                         :
-                            "Submit"
+                            `${buttonText}`
                     }
                 </Button>
             </form>

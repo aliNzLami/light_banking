@@ -4,7 +4,7 @@ import { ID } from "node-appwrite";
 import { createAdminClient } from "../appwrite";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { parseStringify } from "@/assets/helpers/utils";
+import { parseStringify } from "@/lib/utils";
 
 declare interface loginParams {
     email: string,
@@ -28,7 +28,7 @@ export const login_API = async (userData: loginParams) => {
   const { email, password } = userData
 
   
-  // -------- create account
+  // -------- login account
   const { account } = await createAdminClient();
   await account.createEmailPasswordSession(email, password);
 
@@ -64,6 +64,29 @@ export const signUp_API = async (userData : signUpParams) => {
     secure: true,
   });
 }
+
+// export const signOut_API = async () => {
+//   "use server";
+
+//   // -------- create account
+//   const { account } = await createAdminClient();
+//   const sessions = await account.getSessions();
+//   if (sessions.sessions.length > 0) {
+//     const sessionId = sessions.sessions[0].$id; 
+//     await account.deleteSession(sessionId);
+//   }
+
+//   // -------- session & cookies
+//   const calledCookie = await cookies();
+//   calledCookie.set("appwrite-session", "", {
+//     path: "/",
+//     httpOnly: true,
+//     sameSite: "strict",
+//     secure: true,
+//     expires: new Date(0), // Expire immediately
+//   });
+// };
+
 
 // export const signUp_API = async (userData : signUpParams) => {
 //     const { email, firstName, lastName, password } = userData;
