@@ -5,6 +5,7 @@ import logo from "@/assets/icons/logo.jpg";
 import Menu from "./Menu";
 import Offcanvas from "../Offcanvas";
 import { useState } from "react";
+import SidebarFooter from "./SidebarFooter";
 
 function TopNav() {
 
@@ -22,11 +23,14 @@ function TopNav() {
                 setIsOpen={setIsOpen}
                 isOpen={isOpen}
                 content={
-                    <nav className="pt-5 flex flex-col gap-4">
-                        <Menu 
-                            onClickItem={()=> setIsOpen(false)}
-                        />
-                    </nav>
+                    <div className="flex flex-col justify-between h-screen">
+                        <nav className="pt-5 flex flex-col gap-4">
+                            <Menu 
+                                onClickItem={()=> setIsOpen(false)}
+                            />
+                        </nav>
+                        <SidebarFooter />
+                    </div>
                 }
             />
             

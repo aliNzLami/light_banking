@@ -1,7 +1,7 @@
 'use server';
 
 import { ID } from "node-appwrite";
-import { createAdminClient } from "../appwrite";
+import { createAdminClient, createSessionClient } from "../appwrite";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { parseStringify } from "@/lib/utils";
@@ -65,27 +65,17 @@ export const signUp_API = async (userData : signUpParams) => {
   });
 }
 
-// export const signOut_API = async () => {
-//   "use server";
+export const signOut_API = async () => {
+  "use server";
 
-//   // -------- create account
-//   const { account } = await createAdminClient();
-//   const sessions = await account.getSessions();
-//   if (sessions.sessions.length > 0) {
-//     const sessionId = sessions.sessions[0].$id; 
-//     await account.deleteSession(sessionId);
-//   }
+  // -------- delete account
+  const { account } = await createSessionClient();
+  await account.deleteSession('current');
 
-//   // -------- session & cookies
-//   const calledCookie = await cookies();
-//   calledCookie.set("appwrite-session", "", {
-//     path: "/",
-//     httpOnly: true,
-//     sameSite: "strict",
-//     secure: true,
-//     expires: new Date(0), // Expire immediately
-//   });
-// };
+  // -------- session & cookies
+  const calledCookie = await cookies();
+  calledCookie.delete("appwrite-session");
+};
 
 
 // export const signUp_API = async (userData : signUpParams) => {
