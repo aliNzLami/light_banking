@@ -1,17 +1,22 @@
 'use client'
-import CorePanel from "@/components/CorePanel/CorePanel";
+
+// hooks
 import { redirect } from "next/navigation";
 import { getLoggedInUser } from "@/lib/appwrite";
 import { useEffect, useState } from "react";
-import LoadingPage from "@/components/LoadingPage";
 
-import { UseSelector, useDispatch, useSelector } from "react-redux";
+// redux
+import { useDispatch } from "react-redux";
 import { setNewUser } from "@/lib/redux/userSlice";
+
+// components
+import LoadingPage from "@/components/LoadingPage";
+import CorePanel from "@/components/CorePanel/CorePanel";
+
 
 export default function RootLayout({ children }: Readonly<{children: React.ReactNode;}>) {
 
   const dispatch = useDispatch();
-
   const [loading, setLoading] = useState(true);
   
   const checkUser = async () => {

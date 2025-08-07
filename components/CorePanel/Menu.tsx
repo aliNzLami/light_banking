@@ -1,8 +1,11 @@
 "use client";
-import Image from "next/image";
+
+// route
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+// img
+import Image from "next/image";
 import home_icon from "@/assets/icons/home.svg";
 import myBanks_icon from "@/assets/icons/dollar-circle.svg";
 import transaction_icon from "@/assets/icons/transaction.svg";

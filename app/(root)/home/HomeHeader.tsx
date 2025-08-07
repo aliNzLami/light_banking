@@ -1,9 +1,13 @@
 'use client'
 
-import HeaderTitle from '@/components/HeaderTitle'
-import TotalBalance from './TotalBalance'
+// redux
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
+
+// components
+import HeaderTitle from '@/components/HeaderTitle'
+import TotalBalance from './TotalBalance'
+
 
 function HomeHeader() {
 

@@ -1,7 +1,11 @@
 'use client'
+
+// hooks
 import { redirect } from "next/navigation";
 import { getLoggedInUser } from "@/lib/appwrite";
 import { useEffect, useState } from "react";
+
+// components
 import LoadingPage from "@/components/LoadingPage";
 
 

@@ -1,6 +1,7 @@
-import Image from "next/image"
 import Link from "next/link"
 
+// img
+import Image from "next/image"
 import paypassIocn from "@/assets/icons/Paypass.svg";
 import mastercardIcon from "@/assets/icons/mastercard.svg";
 import lines from "@/assets/icons/lines.png";

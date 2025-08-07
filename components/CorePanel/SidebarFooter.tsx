@@ -1,13 +1,23 @@
 'use client'
 
+// img
 import Image from "next/image"
 import signOutIcon from "@/assets/icons/logout.svg"
+
+// api
 import { signOut_API } from "@/lib/actions/users.actions"
-import Modal from "../Modal"
+
+// hooks
 import { useState } from "react"
-import SubmitBtn from "../SubmitBtn"
+
+// redux
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
+
+// components
+import Modal from "../Modal"
+import SubmitBtn from "../SubmitBtn"
+
 
 function SidebarFooter() {
 

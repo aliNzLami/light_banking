@@ -1,10 +1,13 @@
 
 'use client'
 
-import BanksRightSide from "./BanksRightSide";
-import ProfileRightSide from "./ProfileRightSide";
+// redux
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
+
+// components
+import BanksRightSide from "./BanksRightSide";
+import ProfileRightSide from "./ProfileRightSide";
 
 function RightSidebar() {
 

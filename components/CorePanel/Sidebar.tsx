@@ -1,6 +1,9 @@
-import Menu from "./Menu";
+// img
 import Image from "next/image";
 import logo from "@/assets/icons/logo.jpg"
+
+// components
+import Menu from "./Menu";
 import SidebarFooter from "./SidebarFooter";
 
 function Sidebar() {

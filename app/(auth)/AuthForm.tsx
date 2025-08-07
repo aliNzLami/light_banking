@@ -1,14 +1,23 @@
 "use client"
+
+// hooks
 import { useState } from "react"
+import { useForm } from "react-hook-form"
+
+// zod
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
+
+// api
 import { signUp_API, login_API } from "@/lib/actions/users.actions"
+
+// img
 import Image from "next/image"
 import logo from "@/assets/icons/logo.jpg"
+
+// components
 import CustomForm from "@/components/CustomForm"
 import AuthNav from "./AuthNav"
-import { redirect } from "next/navigation"
 
 
 const formSchema_login = z.object({

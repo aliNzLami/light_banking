@@ -1,5 +1,7 @@
-import Image from "next/image"
 import Link from "next/link"
+
+// img
+import Image from "next/image"
 import plusIcon from "@/assets/icons/plus.svg";
 import BankCard from "@/components/BankCard";
 
