@@ -29,7 +29,6 @@ function SidebarFooter() {
       setIsLoading(true);
       signOut_API()
       .then(msg => {
-        setIsLoading(false);
         window.location.reload();
       })
       .catch(err => {

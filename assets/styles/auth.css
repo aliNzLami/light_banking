@@ -1,0 +1,57 @@
+.signUp .firstName {
+    grid-area: firstName;
+  }
+  .signUp .lastName {
+    grid-area: lastName;
+  }
+  .signUp .address {
+    grid-area: address;
+  }
+  .signUp .state {
+    grid-area: state;
+  }
+  .signUp .postalCode {
+    grid-area: postalCode;
+  }
+  .signUp .nid {
+    grid-area: nid;
+  }
+  .signUp .email {
+    grid-area: email;
+  }
+  .signUp .password {
+    grid-area: password;
+  }
+  .signUp .dateOfBirth {
+    grid-area: dateOfBirth;
+  }
+  
+  .signUp .customGrid {
+    display: grid;
+    column-gap: 20;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+      "firstName lastName" 
+      "address address" 
+      "state postalCode" 
+      "nid dateOfBirth" 
+      "email email" 
+      "password password";
+  }
+  
+  @media (max-width: 768px) {
+    .signUp .customGrid {
+      column-gap: 0;
+      grid-template-columns: 1fr;
+      grid-template-areas: 
+        "firstName" 
+        "lastName"
+        "address" 
+        "state" 
+        "postalCode"
+        "nid" 
+        "dateOfBirth"
+        "email" 
+        "password";
+    }
+  }

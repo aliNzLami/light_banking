@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
+
+// fonts
 import { Inter, IBM_Plex_Serif } from "next/font/google";
-import "../assets/styles/main.css";
+
+// css
+import "../assets/styles/general.css";
 import "../assets/styles/corePanel.css";
+import "../assets/styles/auth.css";
+
+// redux
 import ReduxProvider from "@/lib/redux/provider";
 
 const inter = Inter({
