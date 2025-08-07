@@ -22,7 +22,7 @@ export default function RootLayout({ children }: Readonly<{children: React.React
   const checkUser = async () => {
     const user = await getLoggedInUser();
     if(user === null) {
-      redirect("/sign-up");
+      redirect("/login");
     }
     else {
       dispatch(setNewUser(user));

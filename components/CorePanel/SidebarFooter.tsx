@@ -4,9 +4,6 @@
 import Image from "next/image"
 import signOutIcon from "@/assets/icons/logout.svg"
 
-// api
-import { signOut_API } from "@/lib/actions/users.actions"
-
 // hooks
 import { useState } from "react"
 
@@ -14,48 +11,15 @@ import { useState } from "react"
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
 
-// components
-import Modal from "../Modal"
-import SubmitBtn from "../SubmitBtn"
 
-
-function SidebarFooter() {
+function SidebarFooter( { onClickHandler }: { onClickHandler: Function } ) {
 
     const userInfo = useSelector((state: RootState) => state.userInfo.value);
-    const [showModal, setShowModal] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-
-    const handle_logout = () => {
-      setIsLoading(true);
-      signOut_API()
-      .then(msg => {
-        window.location.reload();
-      })
-      .catch(err => {
-        setIsLoading(false);
-      })
-    }
 
     return (
 
       <>
-        <Modal 
-          isOpen={showModal}
-          onClose={() => setShowModal(false)}
-        >
-          <div className="flex flex-col justify-center">
-            <span className="text-center mt-5 mb-10 text-[20px] leading-[24px] font-semibold text-gray-700 text-b&W">
-              Are you sure to logout?
-            </span>
-            <SubmitBtn
-              isLoading={isLoading}
-              onClick={handle_logout}
-              buttonText="Logout"
-            />
-          </div>
-        </Modal>
-
-        <footer className="flex cursor-pointer items-center justify-between gap-2 py-6" onClick={() => setShowModal(true)}>
+        <footer className="flex cursor-pointer items-center justify-between gap-2 py-6" onClick={onClickHandler}>
           <div className="flex size-10 items-center justify-center rounded-full bg-gray-200">
             <p className="text-xl font-bold text-gray-700">
               {userInfo?.name[0]??""}
