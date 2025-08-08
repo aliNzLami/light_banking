@@ -1,7 +1,8 @@
 import { ReactElement } from "react";
 
 declare interface HeaderTitleProps {
-    title: string,
+    text1: string,
+    text2: string,
     description: string
 }
 

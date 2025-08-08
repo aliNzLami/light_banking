@@ -17,8 +17,9 @@ function HomeHeader() {
     <header className="flex flex-col justify-between gap-8">
 
         <HeaderTitle
-            title={`Hello ${userInfo?.name??""}`}
-            description="stdfsdfsdfsdfsdfsdfsdfsdfsdfsdh"
+            text1={"Hello"}
+            text2={userInfo?.name??""}
+            description="Accese and manage your transactions efficiently"
         />
 
         <TotalBalance

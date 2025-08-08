@@ -2,10 +2,12 @@
 
 import {configureStore} from "@reduxjs/toolkit";
 import userInfo from './userSlice'
+import bankInfo from './bankSlice'
 
 export const store = configureStore({
     reducer: {
-        userInfo: userInfo
+        userInfo: userInfo,
+        bankInfo: bankInfo
     }
 })
 

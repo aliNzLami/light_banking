@@ -26,8 +26,16 @@ export default function RootLayout({ children }: Readonly<{children: React.React
     }
     else {
       dispatch(setNewUser(user));
+      addPlaidCDN();
       setLoading(false);
     }
+  }
+
+  const addPlaidCDN = () => {
+    const script = document.createElement('script');
+    script.src = "https://cdn.plaid.com/link/v2/stable/link-initialize.js";
+    script.async = true;
+    document.body.appendChild(script);
   }
 
   useEffect(() => {
