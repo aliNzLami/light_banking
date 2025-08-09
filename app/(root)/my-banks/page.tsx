@@ -7,49 +7,55 @@ import { useEffect, useState } from "react";
 import { usePlaidLink } from 'react-plaid-link';
 
 // api
-import { get_accessToken_plaid, token_generator_plaid } from "@/lib/actions/users.actions";
+import { get_accessToken_plaid, get_linkToken_plaid } from "@/lib/actions/users.actions";
 
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
-import { setNewToken } from "@/lib/redux/bankSlice";
+import { setLinkToken, setAccessToken } from "@/lib/redux/bankSlice";
 
 function MyBanks() {
 
-    const dispatch = useDispatch(); 
-    const userInfo = useSelector((state: RootState) => state.userInfo.value);
-    const bankToken = useSelector((state: RootState) => state.bankInfo.token);
-    
-    const fetchToken = async () => {
-      await token_generator_plaid(userInfo, "auth")
-      .then(res => {
-        dispatch(setNewToken(res.linkToken));
-      })
-    }
-    
-    const get_plaidLink = async (token: string) => {
-      const handler = window.Plaid.create({
-        token: token,
-        onSuccess: async (publicToken, metadata) => {
-          const accessToken = await get_accessToken_plaid(publicToken);
-          console.log(accessToken);
-        },
-        onExit: (err, metadata) => {
-          console.log(err);
-          console.log(metadata);
-        },
-      })
-      handler.open();
-      handler.exit();
+      const linkToken = useSelector((state: RootState) => state.bankInfo.linkToken);
+      const userInfo = useSelector((state: RootState) => state.userInfo.value);
+      const dispatch = useDispatch();
+        
+        
+      const handleClick = async () => {
+        const handler = window.Plaid.create({
+          token: linkToken,
+          onSuccess: async (publicToken, metadata) => {
+            const accessToken = await get_accessToken_plaid(publicToken);
+            dispatch(setAccessToken(accessToken));
+          },
+          onExit: (err, metadata) => {
+            console.log(err);
+            console.log(metadata);
+          },
+        })
+        handler.open();
+        handler.exit();
+      }
+
+    const fetchLinkToken = async () => {
+        await get_linkToken_plaid(userInfo, ['auth', 'transactions', 'identity'])
+        .then(res => {
+            dispatch(setLinkToken(res.linkToken));
+        })
     }
 
     useEffect(() => {
-      fetchToken();
+      if(!linkToken) {
+        fetchLinkToken();
+      }
     }, [])
+
+    console.log(linkToken);
+    
 
     return (
       <div>
-        <button onClick={() => get_plaidLink(bankToken)}>
+        <button onClick={handleClick}>
           ADDDDD
         </button>
       </div>

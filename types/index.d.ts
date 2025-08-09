@@ -54,3 +54,9 @@ declare interface FormProps {
     isLoading: boolean,
     buttonText: string
 }
+
+declare interface HomeHeaderProps {
+    userInfo: object, 
+    banksList: array, 
+    totalBalance: number
+}

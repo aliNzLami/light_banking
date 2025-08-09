@@ -1,6 +1,5 @@
 'use server';
-
-import { ID } from "node-appwrite";
+import { ID, Query } from "node-appwrite";
 import { createAdminClient, createSessionClient } from "../appwrite";
 import { cookies } from "next/headers";
 import { parseStringify } from "@/lib/utils";
@@ -96,14 +95,14 @@ export const signOut_API = async () => {
 
 // ---------------------------- PLAID APIs ---------------------------- //
 
-export const token_generator_plaid = async (user: plaidTokenProps, products: string) => {
+export const get_linkToken_plaid = async (user: plaidTokenProps, products: Array) => {
   try {
     const tokenParams = {
       user: {
         client_user_id: user.$id
       },
       client_name: user.name,
-      products: [products] as Products[],
+      products: products as Products[],
       language: 'en',
       country_codes: ['US'] as CountryCode[],
     }
@@ -122,20 +121,96 @@ export const get_accessToken_plaid = async (public_token: string) => {
       access_token: response.data.access_token,
       item_id: response.data.item_id
     }
-  } catch (error) {
+  } 
+  catch (error) {
     console.error('Error exchanging public token:', error);
   }
 }
 
-export const handler = async (access_token: string) => {
-  try {
+export const get_bankItems_plaid = async (access_token: string) => {
     const response = await plaidClient.accountsGet({ access_token });
+    return response.data;
+}
+
+
+// ---------------------------- BANK APIs ---------------------------- //
+
+export const createBank_API = async (info : object) => {
+
+  const { database } = await createAdminClient();
+
+  const response = await database.createDocument(
+    process.env.APPWRITE_DATABASE_ID!,
+    process.env.APPWRITE_BANK_COLLECTION_ID!,
+    ID.unique(),            
+    info,
+  );
+
+  return response;
+}
+
+export const updateBank_API = async (doc_id: string, changedInfo: object) => {
+
+  const { database } = await createAdminClient();
+  const response = await database.updateDocument(
+    process.env.APPWRITE_DATABASE_ID!,
+    process.env.APPWRITE_BANK_COLLECTION_ID!,
+    doc_id,            
+    changedInfo,
+  );
+  return response;
+}
+
+export const getBanks_API = async (userId : string) => {
+  try {
+    const { database } = await createAdminClient();
+
+    const response = await database.listDocuments(
+      process.env.APPWRITE_DATABASE_ID!,
+      process.env.APPWRITE_BANK_COLLECTION_ID!,
+      [Query.equal('userID', [userId])]
+    )
     return response;
-  } catch (error) {
-    console.error('Error fetching accounts:', error);
+
+  } 
+  catch (error) {
+    console.log(error)
   }
 }
 
+// export const getBank = async (documentId: string) => {
+//   try {
+//     const { database } = await createAdminClient();
+
+//     const bank = await database.listDocuments(
+//       process.env.APPWRITE_DATABASE_ID!,
+//       process.env.APPWRITE_BANK_COLLECTION_ID!,
+//       [Query.equal('$id', [documentId])]
+//     )
+
+//     return parseStringify(bank.documents[0]);
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
+
+// export const getBankByAccountId = async (accountId: string) => {
+//   try {
+//     const { database } = await createAdminClient();
+
+//     const bank = await database.listDocuments(
+//       process.env.APPWRITE_DATABASE_ID!,
+//       process.env.APPWRITE_BANK_COLLECTION_ID!,
+//       [Query.equal('accountId', [accountId])]
+//     )
+
+//     if(bank.total !== 1) return null;
+
+//     return parseStringify(bank.documents[0]);
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
 
 // export const signUp_API = async (userData : signUpParams) => {
 //     const { email, firstName, lastName, password } = userData;

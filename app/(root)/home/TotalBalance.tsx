@@ -9,8 +9,8 @@ function TotalBalance({accounts, banks, balance}: TotalBalanceProps) {
         </div>
 
         <div className="flex flex-col gap-6">
-          <h2 className="text-[18px] leading-[22px] font-semibold text-gray-900 text-center">
-            Bank Accounts: { banks }
+          <h2 className="text-[18px] leading-[22px] font-semibold text-gray-900">
+            Banks: { banks }
           </h2>
           <div className="flex flex-col align-center gap-2">
             <p className="text-[14px] leading-[20px] font-medium text-gray-600">

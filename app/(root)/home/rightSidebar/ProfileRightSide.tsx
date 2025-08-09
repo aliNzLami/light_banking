@@ -1,8 +1,10 @@
+import kawakaari from "@/assets/icons/background.jpeg";
+
 function ProfileRightSide({userInfo}: { userInfo: Object }) {
     return (
         <div className="flex flex-col pb-8">
-            <div className="h-[120px] w-full bg-cover bg-no-repeat">
-                {/* bg */}
+            <div className="h-[120px] w-full bg-cover bg-no-repeat overflow-hidden">
+                <img src={kawakaari.src} alt="kawakaari" />
             </div>
 
             <div className="relative flex px-6 max-xl:justify-center">

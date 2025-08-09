@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Link from "next/link"
 
 // img
@@ -5,15 +6,25 @@ import Image from "next/image"
 import plusIcon from "@/assets/icons/plus.svg";
 import BankCard from "@/components/BankCard";
 
-function BanksRightSide( { userInfo} : { userInfo: Object }) {
-  return (
-    <>
+// api
+import { get_bank_plaid, get_linkToken_plaid } from "@/lib/actions/users.actions";
+
+// redux
+import { useDispatch, useSelector } from "react-redux";
+import { setLinkToken } from "@/lib/redux/bankSlice";
+
+
+function BanksRightSide( { userInfo, banksList} : { userInfo: Object, banksList: object }) {
+
+    
+    return (
+        <>
             <div className="flex flex-col justify-between gap-8 px-6 py-8">
                 <div className="flex w-full justify-between">
-                   <span className="text-18 font-semibold text-gray-900 text-b&w">
+                <span className="text-18 font-semibold text-gray-900 text-b&w">
                         My Banks
-                   </span> 
-                   <Link className="flex gap-2" href='/my-banks'>
+                </span> 
+                <Link className="flex gap-2" href='/my-banks'>
                         <Image 
                             alt="plus"
                             src={plusIcon}
@@ -23,34 +34,26 @@ function BanksRightSide( { userInfo} : { userInfo: Object }) {
                         <span className="text-[14px] leading-[20px] font-semibold text-gray-600 text-b&w">
                             Add Bank
                         </span>
-                   </Link>
+                </Link>
                 </div>
             </div>
 
-            {
-                // banks?.length > 0 &&
-                true &&
-                <div className="relative flex flex-col items-center justify-center gap-5">
-                    <div className="relative z-10">
-                        <BankCard 
-                            bankInfo={{}}
-                            fullName={userInfo?.name??""}
-                        />
-                    </div>
-                    {
-                        // banks[1] &&
-                        true &&
-                        <div className="absolute right-0 top-8 z-0 w-[90%]">
-                            <BankCard 
-                                bankInfo={{}}
-                                fullName={userInfo?.name??""}
-                            />
-                        </div>
-                    }
+            <div className="relative flex flex-col items-center justify-center gap-5">
+                <div className="relative z-10">
+                    <BankCard 
+                        bankInfo={banksList[0]}
+                        accountNumber={0}
+                    />
                 </div>
-            }
-    </>
-  )
+                <div className="absolute right-[8px] top-8 z-0 w-[90%]">
+                    <BankCard 
+                        bankInfo={banksList[1] ? banksList[1] : banksList[0]}
+                        accountNumber={banksList[1] ? 0 : ( JSON.parse(banksList[0].accountsList)[1] ? 1 : 0 )}
+                    />
+                </div>
+            </div>
+        </>
+    )
 }
 
 export default BanksRightSide
