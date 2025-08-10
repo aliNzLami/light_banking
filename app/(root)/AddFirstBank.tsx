@@ -28,7 +28,7 @@ function AddFirstBank() {
             token: linkToken,
             onSuccess: async (publicToken, metadata) => {
                 const response = await get_accessToken_plaid(publicToken);
-                createBank({...response}, metadata.accounts, metadata.institution)
+                createBank({...response}, metadata.institution)
             },
             onExit: (err, metadata) => {
                 console.log(err);
@@ -39,14 +39,13 @@ function AddFirstBank() {
         handler.exit();
     }
 
-    const createBank = (tokens: object, accounts: array, institution: object) => {
+    const createBank = (tokens: object, institution: object) => {
         createBank_API({
             accessToken: tokens?.access_token,
             itemID: tokens?.item_id,
             userID: userInfo.$id,
             userName: userInfo.name,
-            accountsList: JSON.stringify(accounts),
-            bankData: JSON.stringify(institution)
+            institution,
         })
         .then(res => {
             window.location.reload();

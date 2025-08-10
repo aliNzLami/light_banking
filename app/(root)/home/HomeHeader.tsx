@@ -5,7 +5,7 @@ import HeaderTitle from '@/components/HeaderTitle'
 import TotalBalance from './TotalBalance'
 
 
-function HomeHeader({userInfo, banksList, totalBalance}: HomeHeaderProps) {
+function HomeHeader({userInfo, banksList}: HomeHeaderProps) {
   
   return (
     <header className="flex flex-col justify-between gap-8">
@@ -16,11 +16,7 @@ function HomeHeader({userInfo, banksList, totalBalance}: HomeHeaderProps) {
             description="Accese and manage your transactions efficiently"
         />
 
-        <TotalBalance
-            accounts={[]}
-            banks={banksList.length}
-            balance={totalBalance}
-        />
+        <TotalBalance banksList={banksList}/>
     </header>
   )
 }

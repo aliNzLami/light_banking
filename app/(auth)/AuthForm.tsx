@@ -165,7 +165,7 @@ function AuthForm({type}: {type: string}) {
     return (
       <div className="flex min-h-screen w-full flex-col justify-center items-center gap-5 md:gap-8">
 
-        <div className="shadow-lg p-5">
+        <div className="shadow-lg p-5 authCard">
           <header className="flex flex-col items-center gap-5 md:gap-8 mb-10">
               <div className="flex flex-col items-end justify-center">
                   <h1 className="fontLogo">

@@ -53,3 +53,13 @@ body {
 .bg-blue-gradient {
   background: linear-gradient(var(--blue2), var(--blue1));
 }
+
+.lightBlueText {
+  color: var(--blue1);
+}
+
+.nameOnCard {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.237);
+  padding-bottom: 6px;
+  display: block;
+}

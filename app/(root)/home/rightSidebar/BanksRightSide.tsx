@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Link from "next/link"
 
 // img
@@ -6,17 +5,10 @@ import Image from "next/image"
 import plusIcon from "@/assets/icons/plus.svg";
 import BankCard from "@/components/BankCard";
 
-// api
-import { get_bank_plaid, get_linkToken_plaid } from "@/lib/actions/users.actions";
-
-// redux
-import { useDispatch, useSelector } from "react-redux";
-import { setLinkToken } from "@/lib/redux/bankSlice";
 
 
 function BanksRightSide( { userInfo, banksList} : { userInfo: Object, banksList: object }) {
 
-    
     return (
         <>
             <div className="flex flex-col justify-between gap-8 px-6 py-8">
@@ -40,7 +32,7 @@ function BanksRightSide( { userInfo, banksList} : { userInfo: Object, banksList:
 
             <div className="relative flex flex-col items-center justify-center gap-5">
                 <div className="relative z-10">
-                    <BankCard 
+                    <BankCard
                         bankInfo={banksList[0]}
                         accountNumber={0}
                     />

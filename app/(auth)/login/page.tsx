@@ -4,6 +4,7 @@ import AuthForm from "../AuthForm"
     return (
       <section className="flex-center size-full max-sm:px-6">
         <AuthForm type="login" />
+        <div className="backgroundWave" />
       </section>
     )
 }

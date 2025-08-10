@@ -50,9 +50,6 @@ function MyBanks() {
       }
     }, [])
 
-    console.log(linkToken);
-    
-
     return (
       <div>
         <button onClick={handleClick}>

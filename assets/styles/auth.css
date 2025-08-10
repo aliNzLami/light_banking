@@ -55,3 +55,22 @@
         "password";
     }
   }
+
+  .backgroundWave {
+    width: 100%;
+    background-image: url("../icons/waves.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50vh;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    opacity: 0.6;
+  } 
+
+  .authCard {
+    position: relative;
+    z-index: 2;
+    background-color: white;
+    border-radius: 10px;
+  }

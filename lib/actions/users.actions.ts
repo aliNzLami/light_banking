@@ -28,13 +28,22 @@ declare interface plaidTokenProps {
   $id: string,
   email: string,
   name: string,
-  // firstName: string,
-  // lastName: string,
   address?: string,
   state?: string,
   postalCode?: string,
   nid?: string,
   dateOfBirth?: string,
+}
+
+function getCircularReplacer() {
+  const seen = new WeakSet();
+  return (key: string, value: any) => {
+    if (typeof value === "object" && value !== null) {
+      if (seen.has(value)) return "[Circular]";
+      seen.add(value);
+    }
+    return value;
+  };
 }
 
 // ---------------------------- AppWrite AUTH APIs ---------------------------- //
@@ -132,10 +141,38 @@ export const get_bankItems_plaid = async (access_token: string) => {
     return response.data;
 }
 
+export const get_institution_plaid = async (institution_id: string) => {
+  const institutionRes = await plaidClient.institutionsGetById({
+    institution_id,
+    country_codes: ['US'] as CountryCode[],
+    options: { include_optional_metadata: true }
+  });
+  return institutionRes;
+}
+
+export const get_transactions_plaid = async (access_token: string) => {
+  const institutionRes = await plaidClient.transactionsGet({
+    access_token,
+    start_date: '2024-01-01',
+    end_date: '2025-01-01'
+  });
+  return institutionRes;
+}
 
 // ---------------------------- BANK APIs ---------------------------- //
 
 export const createBank_API = async (info : object) => {
+
+  const accounts = (await get_bankItems_plaid(info.accessToken)).accounts;
+  const institution = (await get_institution_plaid(info.institution.institution_id)).data;
+  const transactions = (await get_transactions_plaid(info.accessToken)).data.transactions
+
+  const finalData = {
+    ...info,
+    accountsList: JSON.stringify(accounts, getCircularReplacer()),
+    institution: JSON.stringify(institution, getCircularReplacer()), // AppWrite does not accepts array
+    transactions: JSON.stringify(transactions, getCircularReplacer())
+  }
 
   const { database } = await createAdminClient();
 
@@ -143,7 +180,7 @@ export const createBank_API = async (info : object) => {
     process.env.APPWRITE_DATABASE_ID!,
     process.env.APPWRITE_BANK_COLLECTION_ID!,
     ID.unique(),            
-    info,
+    finalData,
   );
 
   return response;
