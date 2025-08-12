@@ -67,6 +67,29 @@ export const formatDateTime = (dateString: Date) => {
   };
 };
 
+// ---------------------- COLOR ---------------------- //
+
+export function lightenColor(color: string, amount: number) {
+  let col = color.startsWith('#') ? color.slice(1) : color;
+
+  // If the color is shorthand like #abc, expand it
+  if (col.length === 3) {
+    col = col.split('').map(c => c + c).join('');
+  }
+
+  const num = parseInt(col, 16);
+  let r = (num >> 16) + amount;
+  let g = ((num >> 8) & 0x00FF) + amount;
+  let b = (num & 0x0000FF) + amount;
+
+  r = Math.min(255, Math.max(0, r));
+  g = Math.min(255, Math.max(0, g));
+  b = Math.min(255, Math.max(0, b));
+
+  const lighter = `#${(r << 16 | g << 8 | b).toString(16).padStart(6, '0')}`;
+  return lighter;
+}
+
 // ---------------------- CURRENCY ---------------------- //
 
 export function formatAmount(amount: number): string {
