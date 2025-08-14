@@ -211,6 +211,8 @@ export const getBanks_API = async (userId : string) => {
       process.env.APPWRITE_BANK_COLLECTION_ID!,
       [Query.equal('userID', [userId])]
     )
+    console.log(response);
+    
     return response;
 
   } 

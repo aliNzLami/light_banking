@@ -48,8 +48,8 @@ export default function RootLayout({ children }: Readonly<{children: React.React
     }
   }
 
-  const checkBanks = (user: object) => {
-    getBanks_API(user.$id)
+  const checkBanks = async (user: object) => {
+    await getBanks_API(user.$id)
     .then(res => {
       if(res?.total != 0) {
         dispatch(setBanks(res.documents))
@@ -76,6 +76,7 @@ export default function RootLayout({ children }: Readonly<{children: React.React
     .then(res => {
       dispatch(setLinkToken(res.linkToken));
       dispatch(setPageLoading(false));
+      dispatch(setBanks([]))
     })
   }
 
@@ -85,7 +86,7 @@ export default function RootLayout({ children }: Readonly<{children: React.React
     checkUser();
     addPlaidCDN();
   }, [])
-  
+
   return (
     <main>
         {
@@ -95,19 +96,30 @@ export default function RootLayout({ children }: Readonly<{children: React.React
           :
           <>
             {
-              banksList.length
+              banksList
               ?
                 <>
-                  <CorePanel />
-                  <div className="custom_container">
-                    { children }
-                  </div>
+                    {
+                      banksList.length
+                      ?
+                        <>
+                          <CorePanel />
+                          <div className="custom_container">
+                            { children }
+                          </div>
+                        </>
+                      :
+                        <AddFirstBank />
+                    }
                 </>
               :
-                <AddFirstBank />
+                <LoadingPage />
             }
           </>
         }
     </main>
   );
 }
+
+
+

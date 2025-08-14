@@ -25,7 +25,6 @@ function MyBanks() {
       const linkToken = useSelector((state: RootState) => state.bankInfo.linkToken);
       const banksList = useSelector((state: RootState) => state.bankInfo.banksList);
       const userInfo = useSelector((state: RootState) => state.userInfo.value);
-      const pageLoading = useSelector((state: RootState) => state.loadingPage);
 
 
       // ------------------------------ STATE ------------------------------ //
@@ -35,14 +34,15 @@ function MyBanks() {
       });
         
 
-      // ------------------------------ FUNCTIONS ------------------------------ //
+      // ------------------------------ CREATE FUNCTIONS ------------------------------ //
       const addBankClick = async () => {
         dispatch(setPageLoading(true));
         const handler = window.Plaid.create({
           token: linkToken,
           onSuccess: async (publicToken, metadata) => {
             const response = await get_accessToken_plaid(publicToken);
-            createBank({...response}, metadata.institution)
+            checkExistingBank({...response}, metadata.institution, metadata.accounts)
+            // createBank({...response}, metadata.institution)
           },
           onExit: (err, metadata) => {
             dispatch(setPageLoading(false));
@@ -50,6 +50,46 @@ function MyBanks() {
         })
         handler.open();
         handler.exit();
+      }
+
+      const checkExistingBank = (tokens: object, institution: object, accounts: array) => {
+        let existedBank = {};
+        banksList.map(item => {
+          if( JSON.parse(item.institution).institution.name === institution.name ) {
+            existedBank = ({...item});
+            existedBank.accountsList = [...JSON.parse(existedBank.accountsList), ...accounts];
+          }
+        })
+
+        if(Object.keys(existedBank).length) {
+          organiseNewBankAccounts(tokens, existedBank);
+        }
+        else {
+          createBank(tokens, institution)
+        }
+      }
+
+      const organiseNewBankAccounts = (token: string, existedBank: object) => {
+        const data = existedBank.accountsList;
+        const cleanID = data.map(item => {
+          const newItem = {...item};
+          if ('id' in newItem) {
+            newItem['account_id'] = newItem['id'];
+            delete newItem['id'];
+          }
+          return newItem;
+        });
+
+        // 2. Remove duplicates based on 'account_id'
+        const removedRepeatedItem = new Map();
+        cleanID.forEach(item => {
+          if (!removedRepeatedItem.has(item.name)) {
+            removedRepeatedItem.set(item.name, item);
+          }
+        });
+        const uniqueData = Array.from(removedRepeatedItem.values());
+        existedBank.accountsList = uniqueData;
+        refreshBankAccounts(existedBank)
       }
 
       const createBank = (tokens: object, institution: object) => {
@@ -68,6 +108,8 @@ function MyBanks() {
           })
       }
 
+
+      // ------------------------------ DELETE FUNCTIONS ------------------------------ //
       const deleteOnClick = (data: Object) => {
         const { bank, account } = {...data};
         const newBank = {...bank};
@@ -77,35 +119,51 @@ function MyBanks() {
         newBank.accountsList = JSON.stringify([...newAccounts]);
 
         if(newAccounts.length) {
-          deleteAccount(newBank, "deletedAccount");
+          deleteBankAccount(newBank, "deletedAccount");
         }
         else {
-          deleteAccount(newBank, "deletedBank");
+          deleteBankAccount(newBank, "deletedBank");
         }
         dispatch(setPageLoading(true));
       }
 
-      const deleteAccount = (bank: object, type: string) => {
-          deleteBank_API(bank.$id)
+      const deleteBankAccount = async (bank: object, type: string) => {
+        if(type === "deletedAccount") {
+          bank.accountsList = JSON.parse(bank.accountsList) 
+          refreshBankAccounts(bank);
+        }
+        else {
+          await deleteBank_API(bank.$id)
           .then(res => {
-            if(type === "deletedAccount") {
-              updateBanks(bank);
+            if(banksList.length === 1) {
+              window.location.reload()
             }
             else {
-              window.location.reload();
+              updateList()
             }
           })
           .catch(err => {
-            dispatch(setPageLoading(false));
+            console.log(err);            
           })
+        }
       }
 
-      const updateBanks = (bank: object) => {
-        const { accessToken, itemID, userID, userName } = bank;
+      // ------------------------------ SHOWING LIST FUNCTIONS ------------------------------ //
+      
+      const refreshBankAccounts = async (bank: object) => {
+        const { accessToken, itemID, userID, userName, $id } = bank;
         const institution = JSON.parse(bank.institution).institution;
-        const accounts = JSON.parse(bank.accountsList);
+        const accounts = bank.accountsList;
+        
+        await deleteBank_API($id)
+        .then(res => {
 
-        createBank_API(
+        })
+        .catch(err => {
+          console.log(err);
+        })
+
+        await createBank_API(
           {
             accessToken,
             itemID,
@@ -122,7 +180,7 @@ function MyBanks() {
           console.log(err);
         })
       }
-
+      
       const updateList = () => {
         setTimeout(() => {
           getBanks_API(userInfo.$id)
@@ -152,7 +210,6 @@ function MyBanks() {
           fetchLinkToken();
         }
       }, [])
-
 
     return (
       <>

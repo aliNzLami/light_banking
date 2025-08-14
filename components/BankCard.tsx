@@ -23,14 +23,14 @@ function BankCard({bankInfo, accountNumber}: {bankInfo: Object, accountNumber: n
                             { JSON.parse(bankInfo.institution).institution.name??"" }
                         </span>
                         <p className={`font-ibm-plex-serif font-black text-white mt-3 ${logo ? "" : "min-w-[190px]"}`}>
-                            {cardInfo[accountNumber].name}
+                            {cardInfo[accountNumber]?.name??""}
                         </p>
                     </div>
                     <article className="flex flex-col gap-2">
                         <div className="flex justify-between">
                             <span className="text-[12px] leading-[16px] font-semibold text-white"> 
                                 <span className="block">
-                                { `$ ${cardInfo[accountNumber].balances.current}` }
+                                { `$ ${cardInfo[accountNumber]?.balances?.current??""}` }
                                 </span>
                                 <span className="block">
                                     { bankInfo.userName }
@@ -50,7 +50,7 @@ function BankCard({bankInfo, accountNumber}: {bankInfo: Object, accountNumber: n
                         </div>
                         <p className="text-[14px] leading-[20px] font-semibold tracking-[1.1px] text-white">
                             <span className="text-[11px]">
-                                ⬤⬤⬤⬤ ⬤⬤⬤⬤ ⬤⬤⬤⬤ {cardInfo[accountNumber].mask}
+                                ⬤⬤⬤⬤ ⬤⬤⬤⬤ ⬤⬤⬤⬤ {cardInfo[accountNumber]?.mask??""}
                             </span>
                         </p>
                     </article>

@@ -6,7 +6,7 @@ const initialState = {
     linkToken: "",
     publicToken: "",
     accessToken: "",
-    banksList: []
+    banksList: null
 }
 
 export const bankSlice = createSlice({

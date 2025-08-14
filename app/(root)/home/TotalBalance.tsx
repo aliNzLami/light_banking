@@ -10,7 +10,7 @@ function TotalBalance({banksList}: object) {
     let sum = 0;
     for(let bank of banksList) {
       for(let account of JSON.parse(bank.accountsList)) {
-        sum = sum + account.balances.current
+        sum = sum + (account?.balances?.current??"" ? account.balances.current : 0)
       }
     }
     return sum;
@@ -31,7 +31,7 @@ function TotalBalance({banksList}: object) {
       if(banksList.length > 1) {
         for(let bank of banksList) {
           for(let account of JSON.parse(bank.accountsList)) {
-            data.datasets[0].data.push(account.balances.current)
+            data.datasets[0].data.push(account?.balances?.current??"")
             data.labels.push(JSON.parse(bank.institution).institution.name)
           }
         }
@@ -39,14 +39,15 @@ function TotalBalance({banksList}: object) {
       else {
         const accounts = JSON.parse(banksList[0].accountsList);
         for(let account of accounts) {
-          data.datasets[0].data.push(account.balances.current)
+          data.datasets[0].data.push(account?.balances?.current??"")
           data.labels.push(account.name)
         }
       }
-
       return data;
   }
-        
+
+  console.log(banksList);
+  
 
   return (
     <div className="flex align-center justify-center md:justify-start w-full items-center gap-4 rounded-xl border border-gray-200 p-4 shadow-md sm:gap-6 sm:p-6">
