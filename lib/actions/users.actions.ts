@@ -161,9 +161,15 @@ export const get_transactions_plaid = async (access_token: string) => {
 
 // ---------------------------- BANK APIs ---------------------------- //
 
-export const createBank_API = async (info : object) => {
+export const createBank_API = async (info : object, updatedAccounts?: array) => {
 
-  const accounts = (await get_bankItems_plaid(info.accessToken)).accounts;
+  let accounts = []
+  if(updatedAccounts) {
+    accounts = updatedAccounts;
+  }
+  else {
+    accounts = (await get_bankItems_plaid(info.accessToken)).accounts;
+  }
   const institution = (await get_institution_plaid(info.institution.institution_id)).data;
   const transactions = (await get_transactions_plaid(info.accessToken)).data.transactions
 
@@ -186,14 +192,12 @@ export const createBank_API = async (info : object) => {
   return response;
 }
 
-export const updateBank_API = async (doc_id: string, changedInfo: object) => {
-
+export const deleteBank_API = async (documentId: string) => {
   const { database } = await createAdminClient();
-  const response = await database.updateDocument(
+  const response = await database.deleteDocument(
     process.env.APPWRITE_DATABASE_ID!,
     process.env.APPWRITE_BANK_COLLECTION_ID!,
-    doc_id,            
-    changedInfo,
+    documentId,            
   );
   return response;
 }

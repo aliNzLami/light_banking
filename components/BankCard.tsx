@@ -16,7 +16,7 @@ function BankCard({bankInfo, accountNumber}: {bankInfo: Object, accountNumber: n
 
     return (
         <div className="flex flex-col">
-            <Link href="/my-banks" className="relative flex h-[190px] w-full max-w-[320px] md:max-w-[400px] justify-between rounded-[20px] border border-white bg-blue-gradient shadow-md backdrop-blur-[6px]">
+            <div className="cursor-pointer relative flex h-[190px] w-full max-w-[320px] md:max-w-[400px] justify-between rounded-[20px] border border-white bg-blue-gradient shadow-md backdrop-blur-[6px]">
                 <div className="relative flex size-full max-w-[300px] md:max-w-[350px] flex-col justify-between rounded-l-[20px] bg-gray-700 px-5 pb-4 pt-5" style={{background: gradient}}>
                     <div>
                         <span className="text-[16px] leading-[24px] font-bold text-white nameOnCard">
@@ -83,7 +83,7 @@ function BankCard({bankInfo, accountNumber}: {bankInfo: Object, accountNumber: n
                         className="absolute top-0 left-0"
                     />
                 </div>
-            </Link>
+            </div>
         </div>
     )
 }

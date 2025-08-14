@@ -60,3 +60,10 @@ declare interface HomeHeaderProps {
     banksList: array, 
     totalBalance: number
 }
+
+declare interface BankCardMoadlProps {
+    showModal: boolean, 
+    onClose: Function, 
+    data: Object,
+    deleteCard: Function
+}

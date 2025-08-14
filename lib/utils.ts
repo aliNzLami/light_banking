@@ -90,6 +90,13 @@ export function lightenColor(color: string, amount: number) {
   return lighter;
 }
 
+// ---------------------- STRINGS ---------------------- //
+
+export function capitalizeFirstLetter(str: string) {
+  if (!str) return str;
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 // ---------------------- CURRENCY ---------------------- //
 
 export function formatAmount(amount: number): string {
