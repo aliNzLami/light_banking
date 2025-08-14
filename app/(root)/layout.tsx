@@ -1,18 +1,19 @@
 'use client'
 
 // api
-import { get_bankItems_plaid, get_linkToken_plaid, getBanks_API, updateBank_API } from "@/lib/actions/users.actions";
+import { get_linkToken_plaid, getBanks_API } from "@/lib/actions/users.actions";
 
 // hooks
 import { redirect } from "next/navigation";
 import { getLoggedInUser } from "@/lib/appwrite";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { setNewUser } from "@/lib/redux/userSlice";
 import { setBanks, setLinkToken } from "@/lib/redux/bankSlice";
 import { RootState } from "@/lib/redux/store";
+import { setPageLoading } from "@/lib/redux/loadingSlice";
 
 
 // components
@@ -32,11 +33,8 @@ export default function RootLayout({ children }: Readonly<{children: React.React
   // ------------------------------- REDUX ------------------------------- //
   const dispatch = useDispatch();
   const banksList = useSelector((state: RootState) => state.bankInfo.banksList);
+  const pageLoading = useSelector((state: RootState) => state.loadingPage);
 
-
-  // ------------------------------- STATES ------------------------------- //
-  const [loading, setLoading] = useState(true);
-  
 
   // ------------------------------- FUNCTIONS ------------------------------- //
   const checkUser = async () => {
@@ -55,7 +53,7 @@ export default function RootLayout({ children }: Readonly<{children: React.React
     .then(res => {
       if(res?.total != 0) {
         dispatch(setBanks(res.documents))
-        setLoading(false);
+        dispatch(setPageLoading(false));
       }
       else {
         fetchLinkToken(user);
@@ -77,7 +75,7 @@ export default function RootLayout({ children }: Readonly<{children: React.React
     await get_linkToken_plaid(user, ['auth', 'transactions', 'identity'])
     .then(res => {
       dispatch(setLinkToken(res.linkToken));
-      setLoading(false);
+      dispatch(setPageLoading(false));
     })
   }
 
@@ -88,11 +86,10 @@ export default function RootLayout({ children }: Readonly<{children: React.React
     addPlaidCDN();
   }, [])
   
-
   return (
     <main>
         {
-          loading
+          pageLoading.isPageLoading
           ?
             <LoadingPage />
           :

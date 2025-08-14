@@ -10,9 +10,9 @@ import { createBank_API, deleteBank_API, get_accessToken_plaid, get_linkToken_pl
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
 import { setLinkToken, setBanks } from "@/lib/redux/bankSlice";
+import { setPageLoading } from "@/lib/redux/loadingSlice";
 
 // components
-import LoadingPage from "@/components/LoadingPage";
 import MyBanksHeader from "./MyBanksHeader";
 import MyBanksList from "./MyBanksList";
 import CardModal from "./CardModal";
@@ -25,10 +25,10 @@ function MyBanks() {
       const linkToken = useSelector((state: RootState) => state.bankInfo.linkToken);
       const banksList = useSelector((state: RootState) => state.bankInfo.banksList);
       const userInfo = useSelector((state: RootState) => state.userInfo.value);
+      const pageLoading = useSelector((state: RootState) => state.loadingPage);
 
 
       // ------------------------------ STATE ------------------------------ //
-      const [isLoading, setIsLoading] = useState(false);
       const [showModal, setShowModal] = useState({
         show: false,
         data: {}
@@ -37,7 +37,7 @@ function MyBanks() {
 
       // ------------------------------ FUNCTIONS ------------------------------ //
       const addBankClick = async () => {
-        setIsLoading(true);
+        dispatch(setPageLoading(true));
         const handler = window.Plaid.create({
           token: linkToken,
           onSuccess: async (publicToken, metadata) => {
@@ -45,7 +45,7 @@ function MyBanks() {
             createBank({...response}, metadata.institution)
           },
           onExit: (err, metadata) => {
-            setIsLoading(false);
+            dispatch(setPageLoading(false));
           },
         })
         handler.open();
@@ -64,7 +64,7 @@ function MyBanks() {
             updateList()
           })
           .catch(err => {
-              setIsLoading(false);
+              dispatch(setPageLoading(false));
           })
       }
 
@@ -82,7 +82,7 @@ function MyBanks() {
         else {
           deleteAccount(newBank, "deletedBank");
         }
-        setIsLoading(true);
+        dispatch(setPageLoading(true));
       }
 
       const deleteAccount = (bank: object, type: string) => {
@@ -96,7 +96,7 @@ function MyBanks() {
             }
           })
           .catch(err => {
-            setIsLoading(false);
+            dispatch(setPageLoading(false));
           })
       }
 
@@ -129,7 +129,7 @@ function MyBanks() {
           .then(res => {
             if(res?.total != 0) {
               dispatch(setBanks(res?.documents))
-              setIsLoading(false);
+              dispatch(setPageLoading(false));
             }
           })
           .catch(err => {
@@ -153,6 +153,7 @@ function MyBanks() {
         }
       }, [])
 
+
     return (
       <>
         <CardModal 
@@ -161,21 +162,15 @@ function MyBanks() {
           data={showModal.data}
           deleteCard={(data) => deleteOnClick(data)}
         />
-        {
-          isLoading
-          ?
-            <LoadingPage />
-          :
-          <section className="p-10">
-              <MyBanksHeader 
-                handleClick={addBankClick}
-              />
-              <MyBanksList 
-                banksList={banksList}
-                onClickCard={(data) => setShowModal({show: true, data })}
-              />
-          </section>
-        }
+        <section className="p-10">
+            <MyBanksHeader 
+              handleClick={addBankClick}
+            />
+            <MyBanksList 
+              banksList={banksList}
+              onClickCard={(data) => setShowModal({show: true, data })}
+            />
+        </section>
       </>
     )
 }
