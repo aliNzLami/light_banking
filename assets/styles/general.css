@@ -63,3 +63,22 @@ body {
   padding-bottom: 6px;
   display: block;
 }
+
+.bankListHeader {
+  border-top: 1px solid #00000024;
+  margin-top: 50px;
+  padding-top: 35px;
+}
+
+.data-\[state\=active\]\:bg-background[data-state="active"] {
+  color: var(--blue2);
+  border-bottom: 3px solid var(--blue2);
+  border-radius: 0;
+  background-color: transparent;
+  box-shadow: none;
+  font-weight: bold;
+}
+
+.transition-\[color\,box-shadow\] {
+  font-size: 20px;
+}

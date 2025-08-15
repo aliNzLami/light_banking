@@ -67,3 +67,11 @@ declare interface BankCardMoadlProps {
     data: Object,
     deleteCard: Function
 }
+
+declare interface CustomTabsProps {
+    list: array, 
+    onClick: Function,
+    type: string
+}
+
+
