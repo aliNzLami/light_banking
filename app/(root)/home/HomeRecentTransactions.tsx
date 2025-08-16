@@ -4,24 +4,17 @@ import { useEffect, useState } from "react";
 
 function HomeRecentTransactions({userInfo, banksList}: HomeHeaderProps) {
 
-    const [transactionsList, setTransactionsList] = useState([]);
-    
     const prepareTransactions = () => {
         const data = [];
         for(let bank of banksList) {
-            if(JSON.parse(bank.transactions).length) {
+            if(JSON.parse(bank.transactions)) {
                 for (let transaction of JSON.parse(bank.transactions)) {
                     data.push(transaction);
                 }
             }
         }
-        setTransactionsList([...data]);
+        return data;
     }
-    
-    useEffect(() => {
-      prepareTransactions()
-    }, [banksList])
-
 
     return (
         
@@ -35,23 +28,11 @@ function HomeRecentTransactions({userInfo, banksList}: HomeHeaderProps) {
                 </Link>
             </div>
 
-            {
-                transactionsList.length
-                ?
-                    transactionsList.map(item => {
-                        return (
-                            <div key={item.transaction_id}>
-                                <TransactionItem 
-                                    transaction={item}
-                                />
-                            </div>
-                        )
-                    })
-                :
-                    <span className="text-gray-500 text-b&w">
-                        There are no transactions from the last year.
-                    </span>
-            }
+            <TransactionItem 
+                transactions={prepareTransactions()}
+            />
+
+            
         </div>
     )
 }

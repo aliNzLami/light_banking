@@ -16,7 +16,7 @@ function CustomTable({list}: array) {
                                     header.map(item => {
                                         return(
                                             <th key={item} className="border-b border-gray-200 p-4 pt-0 pb-3 pl-8 text-left font-bold text-gray-800 text-b&w">
-                                                { item.toUpperCase() }
+                                                { item }
                                             </th>
                                         )
                                     })

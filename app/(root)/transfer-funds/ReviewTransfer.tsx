@@ -1,7 +1,17 @@
-import React from 'react'
+'use client'
+
+// redux
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/lib/redux/store";
+import { setLinkToken, setBanks } from "@/lib/redux/bankSlice";
+import { setPageLoading } from "@/lib/redux/loadingSlice";
+import { createBank_API, deleteBank_API, getBanks_API } from "@/lib/actions/users.actions";
+import { redirect } from "next/navigation";
 
 function ReviewTransfer({data, submit, goBack}: {data: object, submit: Function, goBack: Function}) {
 
+    const dispatch = useDispatch();
+    
     const content = {
         "Your Bank Institution:": data?.step1?.bank?.institution ? JSON.parse(data?.step1?.bank?.institution).institution?.name??"" : "",
         "Your Account Type:": data?.step1?.account?.name??"",
@@ -11,10 +21,66 @@ function ReviewTransfer({data, submit, goBack}: {data: object, submit: Function,
         "Amount of Money:": `$${data?.step2?.amount??""}`,
     }
 
+    const prepareData = () => {
+        const { accessToken, itemID, userID, userName, $id } = data?.step1?.bank;
+        const institution = JSON.parse(data?.step1?.bank.institution).institution;
+        const accounts = JSON.parse(data?.step1?.bank.accountsList);
+        let transactions;
+        if(data?.step1?.bank.transactions) {
+            transactions = [ ...JSON.parse(data?.step1?.bank.transactions) , {...content}]
+        }
+        else {
+            transactions = [{...content}]
+        }
+        transactions = JSON.stringify(transactions);
 
-    const transferOnClick = () => {
-        const isValid = checkValidity();
-        if(isValid) goNext(form)
+        return { accessToken, itemID, userID, userName, $id, institution, accounts, transactions }
+    }
+
+    const calculateBalance = () => {
+        const allData = prepareData();
+        allData.accounts.map(item => {
+            if(item.name === data.step1.account.name) {
+                item.balances.current = item.balances.current - data.step2.amount
+            }
+        })
+        transferFund(allData)
+    }
+
+    
+
+    const transferFund = async (allData: object) => {
+        const { accessToken, itemID, userID, userName, $id, institution, accounts, transactions } = allData;
+        dispatch(setPageLoading(true));
+
+        await deleteBank_API($id)
+        .catch(err => {
+          console.log(err);
+        })
+
+        await createBank_API(
+            { accessToken, itemID, userID, userName, institution, transactions }, accounts
+        )
+        .then(res => {
+            updateList();
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+
+     const updateList = () => {
+        getBanks_API(data?.step1?.bank.userID)
+        .then(res => {
+            if(res?.total != 0) {
+                dispatch(setBanks(res?.documents))
+                dispatch(setPageLoading(false));
+                redirect('/')
+            }
+        })
+        .catch(err => {
+        // setIsLoading(false);
+        })
     }
 
 
@@ -54,7 +120,7 @@ function ReviewTransfer({data, submit, goBack}: {data: object, submit: Function,
                 <div className="w-[100%] md:w-[130px]">
                     <button 
                         className={`primaryButton py-2 rounded`} 
-                        onClick={transferOnClick}
+                        onClick={calculateBalance}
                     >
                         Transfer Fund
                     </button>

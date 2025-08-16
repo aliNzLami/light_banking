@@ -44,7 +44,8 @@ function SelectRecieverFundTransfer({goNext, goBack, balance}: {goNext: Function
         {
             state: 'amount',
             className:"amountTransfer",
-            title: "Amount",
+            title: `Amount`,
+            description: `You have $${balance} in this account`,
             input: {
                 type: 'number',
                 className: 'amountTransferInput',
@@ -63,7 +64,7 @@ function SelectRecieverFundTransfer({goNext, goBack, balance}: {goNext: Function
       const checkValidity = () => {
         if( ! (form.amount.trim() && form.email.trim() && form.publicID.trim()) ) return false;
         if( ! ( emailValidate(form.email) ) ) return false;
-        if( ! ( Number(form.amount) && Number(form.amount) > 0 && Number(form.amount) < balance  )  ) return false;
+        if( ! ( Number(form.amount) && Number(form.amount) > 0 && Number(form.amount) <= balance  )  ) return false;
         return true
       }
 
@@ -80,9 +81,15 @@ function SelectRecieverFundTransfer({goNext, goBack, balance}: {goNext: Function
                         return (
                         <>
                             <div key={item.className} className={item.className}>
-                            <span className="text-[16px] leading-[24px] font-bold text-gray-700 block">
-                                { item.title }
-                            </span>
+                                <span className="text-[16px] leading-[24px] font-bold text-gray-700 block">
+                                    { item.title }
+                                </span>
+                                {
+                                    item.description &&
+                                    <span className="text-[14px] leading-[20px] font-medium text-gray-600 block">
+                                        { item.description }
+                                    </span>
+                                }
                             </div>
 
                             <Input 

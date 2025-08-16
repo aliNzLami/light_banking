@@ -87,6 +87,9 @@ export default function RootLayout({ children }: Readonly<{children: React.React
     addPlaidCDN();
   }, [])
 
+  console.log(banksList);
+  
+
   return (
     <main>
         {

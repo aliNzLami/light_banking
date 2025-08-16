@@ -113,11 +113,31 @@ function MyBanks() {
       const deleteOnClick = (data: Object) => {
         const { bank, account } = {...data};
         const newBank = {...bank};
-
         const allAccounts = JSON.parse(bank.accountsList);
+        let allTransactions = JSON.parse(bank.transactions);
+
+        // delete accounts
         const newAccounts = allAccounts.filter(item => item.account_id != account.account_id);
         newBank.accountsList = JSON.stringify([...newAccounts]);
+        
+        // delete transactions
+        if(allTransactions) {
+          const newObj = [];
+          allTransactions.map(item => {
+            if(item['Your Account Type:'] !== account.name ) {
+              newObj.push(item);
+            }
+          })
+          if(allTransactions.length) {
+            allTransactions = [...newObj];
+          }
+          else {
+            allTransactions = null
+          }
+        }
+        newBank.transactions = JSON.stringify([...allTransactions]);
 
+        // call API
         if(newAccounts.length) {
           deleteBankAccount(newBank, "deletedAccount");
         }
@@ -129,7 +149,7 @@ function MyBanks() {
 
       const deleteBankAccount = async (bank: object, type: string) => {
         if(type === "deletedAccount") {
-          bank.accountsList = JSON.parse(bank.accountsList) 
+          bank.accountsList = JSON.parse(bank.accountsList);
           refreshBankAccounts(bank);
         }
         else {
@@ -151,7 +171,7 @@ function MyBanks() {
       // ------------------------------ SHOWING LIST FUNCTIONS ------------------------------ //
       
       const refreshBankAccounts = async (bank: object) => {
-        const { accessToken, itemID, userID, userName, $id } = bank;
+        const { accessToken, itemID, userID, userName, $id, transactions } = bank;
         const institution = JSON.parse(bank.institution).institution;
         const accounts = bank.accountsList;
         
@@ -164,14 +184,7 @@ function MyBanks() {
         })
 
         await createBank_API(
-          {
-            accessToken,
-            itemID,
-            userID,
-            userName,
-            institution,
-          },
-          accounts
+          { accessToken, itemID, userID, userName, institution, transactions }, accounts
         )
         .then(res => {
           updateList();
@@ -191,7 +204,7 @@ function MyBanks() {
             }
           })
           .catch(err => {
-            setIsLoading(false);
+            // setIsLoading(false);
           })
         }, 10000);
       }

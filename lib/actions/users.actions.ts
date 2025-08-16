@@ -171,13 +171,11 @@ export const createBank_API = async (info : object, updatedAccounts?: array) => 
     accounts = (await get_bankItems_plaid(info.accessToken)).accounts;
   }
   const institution = (await get_institution_plaid(info.institution.institution_id)).data;
-  const transactions = (await get_transactions_plaid(info.accessToken)).data.transactions
 
   const finalData = {
     ...info,
     accountsList: JSON.stringify(accounts, getCircularReplacer()),
     institution: JSON.stringify(institution, getCircularReplacer()), // AppWrite does not accepts array
-    transactions: JSON.stringify(transactions, getCircularReplacer())
   }
 
   const { database } = await createAdminClient();

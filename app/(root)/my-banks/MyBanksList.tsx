@@ -2,6 +2,7 @@ import BankCard from '@/components/BankCard'
 import React from 'react'
 
 function MyBanksList({banksList, onClickCard}: {banksList: array, onClickCard: Function}) {
+    
     return (
         <>
             <h2 className="text-[24px] leading-[30px] font-bold block text-b&w text-center md:text-start bankListHeader">
@@ -11,7 +12,7 @@ function MyBanksList({banksList, onClickCard}: {banksList: array, onClickCard: F
                 You can see the details and delete any of them.
             </span>
 
-            <div className="mb-3 flex flex-col md:flex-row items-center flex-wrap mt-8">
+            <div className="mb-3 flex flex-col items-center md:items-start flex-wrap mt-8">
             {
                 banksList.map(bank => {
                 return(

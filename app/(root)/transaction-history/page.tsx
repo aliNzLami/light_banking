@@ -41,17 +41,10 @@ function TransactionHistory() {
       if(selectedBank) {
         const tableList = [];
         JSON.parse(selectedBank.transactions).map(item => {
-          const { transaction_id, account_id, category, payment_channel, amount, ...rest } = item;
-          tableList.push({
-            category: category[0],
-            amount: {title: `$${amount}`, color: "#0ecf0e"},
-            channel: capitalizeFirstLetter(payment_channel),
-            ...rest
-          });
+          tableList.push(item);
         })
         return tableList;
       }
-
     }
 
     const tabsOnClick = (selected) => {
@@ -61,6 +54,7 @@ function TransactionHistory() {
     useEffect(() => {
       selectBank()
     }, [])
+    
 
     return (
       <section className="p-10">
@@ -75,7 +69,7 @@ function TransactionHistory() {
                     defaultValue={selectedBank?.$id??""}
                   />
                   {
-                    JSON.parse(selectedBank.transactions).length
+                    JSON.parse(selectedBank.transactions)
                     ?
                       <CustomTable 
                         list={prepareList()}
