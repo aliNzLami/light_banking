@@ -7,6 +7,7 @@ import { setLinkToken, setBanks } from "@/lib/redux/bankSlice";
 import { setPageLoading } from "@/lib/redux/loadingSlice";
 import { createBank_API, deleteBank_API, getBanks_API } from "@/lib/actions/users.actions";
 import { redirect } from "next/navigation";
+import { getFormattedDate } from "@/lib/utils";
 
 function ReviewTransfer({data, submit, goBack}: {data: object, submit: Function, goBack: Function}) {
 
@@ -27,10 +28,10 @@ function ReviewTransfer({data, submit, goBack}: {data: object, submit: Function,
         const accounts = JSON.parse(data?.step1?.bank.accountsList);
         let transactions;
         if(data?.step1?.bank.transactions) {
-            transactions = [ ...JSON.parse(data?.step1?.bank.transactions) , {...content}]
+            transactions = [ ...JSON.parse(data?.step1?.bank.transactions) , {...content, "Date:": getFormattedDate()}]
         }
         else {
-            transactions = [{...content}]
+            transactions = [{...content, "Date:": getFormattedDate()}]
         }
         transactions = JSON.stringify(transactions);
 

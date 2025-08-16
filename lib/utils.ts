@@ -103,6 +103,23 @@ export function emailValidate(item: string) {
   return isValid ? true : false
 }
 
+// ---------------------- DATE ---------------------- //
+
+export function getFormattedDate() {
+  const now = new Date();
+
+  const day = now.getDate();
+  const monthIndex = now.getMonth(); // 0-11
+  const year = now.getFullYear();
+
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+  const monthName = months[monthIndex];
+
+  // Format: "13 Aug 2023"
+  return `${day} ${monthName} ${year}`;
+}
+
 // ---------------------- CURRENCY ---------------------- //
 
 export function formatAmount(amount: number): string {
