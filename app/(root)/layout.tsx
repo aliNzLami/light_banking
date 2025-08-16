@@ -107,9 +107,7 @@ export default function RootLayout({ children }: Readonly<{children: React.React
                       ?
                         <>
                           <CorePanel />
-                          <div className="custom_container">
-                            { children }
-                          </div>
+                          { children }
                         </>
                       :
                         <AddFirstBank />

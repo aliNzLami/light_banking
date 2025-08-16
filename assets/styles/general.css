@@ -16,12 +16,20 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+input::placeholder {
+  font-size: 14px;
+}
+
 .custom_container {
   padding: 0px 50px 0 260px;
 }
 
+.custom_container_home {
+  padding: 0px 0 0 260px;
+}
+
 @media (max-width: 768px) {
-  .custom_container {
+  .custom_container, .custom_container_home {
     margin: 0 auto;
     padding: 85px 0 0 0;
   }

@@ -40,9 +40,11 @@ function TransactionHistory() {
     const prepareList = () => {
       if(selectedBank) {
         const tableList = [];
-        JSON.parse(selectedBank.transactions).map(item => {
-          tableList.push(item);
-        })
+        if(JSON.parse(selectedBank.transactions)) {
+          JSON.parse(selectedBank.transactions).map(item => {
+            tableList.push(item);
+          })
+        }
         return tableList;
       }
     }
@@ -54,10 +56,10 @@ function TransactionHistory() {
     useEffect(() => {
       selectBank()
     }, [])
-    
 
     return (
-      <section className="p-10">
+      <section className="custom_container">
+        <div className="p-10">
             {
               selectedBank
               ?
@@ -83,6 +85,7 @@ function TransactionHistory() {
               :
                 <LoadingPage />
             }
+        </div>
       </section>
     )
 }

@@ -16,6 +16,8 @@
     position: fixed;
     padding: 10px 1rem;
     width: 100%;
+    z-index: 1;
+    background-color: white;
 }
 
 .sidebar_Logo {

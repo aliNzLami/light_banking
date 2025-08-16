@@ -58,7 +58,7 @@ function TransactionItem({transactions}: array) {
                           </div>
 
                           <div className="bg-blue-100 rounded-full flex justify-center items-center">
-                            <p className={`text-[12px] leading-[16px] px-3 py-1 font-medium text-blue-700`}>
+                            <p className={`text-[12px] leading-[16px] px-3 py-1 font-medium text-blue-700 text-center`}>
                                 {item['Your Account Type:']}
                             </p>
                           </div>

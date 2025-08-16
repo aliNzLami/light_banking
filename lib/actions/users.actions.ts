@@ -150,15 +150,6 @@ export const get_institution_plaid = async (institution_id: string) => {
   return institutionRes;
 }
 
-export const get_transactions_plaid = async (access_token: string) => {
-  const institutionRes = await plaidClient.transactionsGet({
-    access_token,
-    start_date: '2024-01-01',
-    end_date: '2025-01-01'
-  });
-  return institutionRes;
-}
-
 // ---------------------------- BANK APIs ---------------------------- //
 
 export const createBank_API = async (info : object, updatedAccounts?: array) => {

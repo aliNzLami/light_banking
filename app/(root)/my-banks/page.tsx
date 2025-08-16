@@ -128,14 +128,13 @@ function MyBanks() {
               newObj.push(item);
             }
           })
-          if(allTransactions.length) {
-            allTransactions = [...newObj];
+          if(newObj.length) {
+            newBank.transactions = JSON.stringify([...newObj]);
           }
           else {
-            allTransactions = null
+            newBank.transactions = null
           }
         }
-        newBank.transactions = JSON.stringify([...allTransactions]);
 
         // call API
         if(newAccounts.length) {
@@ -232,7 +231,8 @@ function MyBanks() {
           data={showModal.data}
           deleteCard={(data) => deleteOnClick(data)}
         />
-        <section className="p-10">
+        <section className="custom_container">
+          <div className="p-10">
             <MyBanksHeader 
               handleClick={addBankClick}
             />
@@ -240,6 +240,7 @@ function MyBanks() {
               banksList={banksList}
               onClickCard={(data) => setShowModal({show: true, data })}
             />
+          </div>
         </section>
       </>
     )

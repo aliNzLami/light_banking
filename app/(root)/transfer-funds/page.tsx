@@ -44,24 +44,26 @@ function TransferFunds() {
   ]
 
   return (
-    <section className="p-10">
-      <div className="flex flex-col bg-gray-25 md:max-h-screen">
-        <HeaderTitle 
-          text1='Payment Transfer'
-          description='Please provide any specific details or notes related to the payment transfer'
-        />
+    <section className="custom_container">
+      <div className="p-10">
+        <div className="flex flex-col bg-gray-25 md:max-h-screen">
+          <HeaderTitle 
+            text1='Payment Transfer'
+            description='Please provide any specific details or notes related to the payment transfer'
+          />
 
-        <TransferProgress current={currentStep} length={content.length} />
+          <TransferProgress current={currentStep} length={content.length} />
 
-        {
-          content.map(item => {
-            return(
-              <div key={item.step} className={`size-full mt-15 ${item.step !== currentStep ? "hidden" : ""}`}>
-                { item.component }
-              </div>
-            )
-          })
-        }
+          {
+            content.map(item => {
+              return(
+                <div key={item.step} className={`size-full mt-15 ${item.step !== currentStep ? "hidden" : ""}`}>
+                  { item.component }
+                </div>
+              )
+            })
+          }
+        </div>
       </div>
     </section>
   )
