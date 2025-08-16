@@ -51,7 +51,7 @@ function CardModal({showModal, onClose, data, deleteCard}: BankCardMoadlProps ) 
 
                 <Modal isOpen={ensureModal} onClose={() => setEnsureModal(false)}>
                     <div className="flex flex-col justify-center">
-                        <span className="text-center mt-5 mb-10 text-[20px] leading-[24px] font-semibold text-gray-700 text-b&W">
+                        <span className="text-center mt-5 mb-10 text-[20px] leading-[24px] font-semibold text-gray-700 txt-darkMode">
                             Are you sure you want to delete {account?.name??""} ?
                         </span>
 
@@ -63,7 +63,7 @@ function CardModal({showModal, onClose, data, deleteCard}: BankCardMoadlProps ) 
 
 
                 <div className="flex flex-col justify-center">
-                <span className="text-center mt-5 mb-10 text-[20px] leading-[24px] font-semibold text-gray-700 text-b&W">
+                <span className="text-center mt-5 mb-10 text-[20px] leading-[24px] font-semibold text-gray-700 txt-darkMode">
                     {account?.name??""}
                 </span>
 
@@ -71,10 +71,10 @@ function CardModal({showModal, onClose, data, deleteCard}: BankCardMoadlProps ) 
                     Object.keys(cardInfo).map(item => {
                         return (
                             <div key={item}>
-                                <span className="font-semibold">
+                                <span className="font-semibold txt-darkMode">
                                     { `${item}: ` }
                                 </span>
-                                <span>
+                                <span className="txt-darkMode">
                                     { cardInfo[item] }
                                 </span>
                             </div>
@@ -89,12 +89,12 @@ function CardModal({showModal, onClose, data, deleteCard}: BankCardMoadlProps ) 
                         </button>
                     </div>
                     <div className="w-[100%] md:w-[180px] md:mx-3">
-                        <button onClick={goToTransactions} className="w-[100%] mt-3 cursor-pointer focus:outline-none text-primary-panel border-primary-panel focus:ring-4 font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
-                            Bank Transactions
+                        <button onClick={goToTransactions} className="w-[100%] mt-3 cursor-pointer focus:outline-none text-primary-panel border-primary-panel darkModeTransactionsBtn focus:ring-4 font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+                            Transactions List
                         </button>
                     </div>
                     <div className="w-[100%] md:w-[180px]">
-                        <button onClick={goToTransfer} className="w-[100%] mt-3 cursor-pointer focus:outline-none text-white bg-primary-panel focus:ring-4 font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+                        <button onClick={goToTransfer} className="w-[100%] mt-3 cursor-pointer focus:outline-none text-white bg-primary-panel darkModeTransferBtn focus:ring-4 font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
                             Transfer Funds
                         </button>
                     </div>

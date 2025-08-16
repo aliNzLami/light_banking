@@ -192,7 +192,7 @@ function AuthForm({type}: {type: string}) {
                       "Sign Up"
                   }
                 </span>
-                <span className="block text-[16px] leading-[24px] text-gray-600">
+                <span className="block text-[16px] leading-[24px] text-gray-600 txt-darkMode">
                   Please enter your details.
                 </span>
               </div>

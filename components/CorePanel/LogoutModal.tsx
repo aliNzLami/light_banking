@@ -31,7 +31,7 @@ function LogoutModal({ showModal, setShowModal }: { showModal: boolean, setShowM
             onClose={() => setShowModal(false)}
         >
             <div className="flex flex-col justify-center">
-            <span className="text-center mt-5 mb-10 text-[20px] leading-[24px] font-semibold text-gray-700 text-b&W">
+            <span className="text-center mt-5 mb-10 text-[20px] leading-[24px] font-semibold text-gray-700 txt-darkMode">
                 Are you sure to logout?
             </span>
             <SubmitBtn

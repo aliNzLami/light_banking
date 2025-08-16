@@ -8,6 +8,7 @@ function Dropdown({ options, placeholder, boxClassName = "", boxHolderClassName=
     const [selectedOption, setSelectedOption] = useState('');
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
+    const isDarkMode = document.body.getAttribute('class')?.includes("darkMode");
 
 
     // ------------------------ FUNCTIONS ------------------------ //
@@ -47,7 +48,7 @@ function Dropdown({ options, placeholder, boxClassName = "", boxHolderClassName=
                     border: '1px solid #ccc',
                     padding: '8px',
                     cursor: 'pointer',
-                    backgroundColor: '#fff',
+                    backgroundColor: `'#fff'`,
                     fontSize: '16px'
                 }}
                 onClick={handleToggle}

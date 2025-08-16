@@ -47,7 +47,7 @@ function Menu({ onClickItem = () => {} }: {onClickItem: Function}) {
                             onClick={() => onClickItem()}
                             href={item.href} 
                             key={item.name}
-                            className={`${currentURL === item.href ? "sidebarActive" : ""} flex gap-3 items-center p-3 2xl:p-4 rounded-lg transition-[0.3s]`}
+                            className={`${currentURL === item.href ? "sidebarActive" : "txt-darkMode"} flex gap-3 items-center p-3 2xl:p-4 rounded-lg transition-[0.3s]`}
                         >
                             <div className="relative flex align-center">
                                 <Image

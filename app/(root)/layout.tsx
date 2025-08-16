@@ -1,5 +1,8 @@
 'use client'
 
+import Image from "next/image";
+import modeIcon from "@/assets/icons/lightdark.png";
+
 // api
 import { get_linkToken_plaid, getBanks_API } from "@/lib/actions/users.actions";
 
@@ -14,7 +17,6 @@ import { setNewUser } from "@/lib/redux/userSlice";
 import { setBanks, setLinkToken } from "@/lib/redux/bankSlice";
 import { RootState } from "@/lib/redux/store";
 import { setPageLoading } from "@/lib/redux/loadingSlice";
-
 
 // components
 import LoadingPage from "@/components/LoadingPage";
@@ -34,6 +36,7 @@ export default function RootLayout({ children }: Readonly<{children: React.React
   const dispatch = useDispatch();
   const banksList = useSelector((state: RootState) => state.bankInfo.banksList);
   const pageLoading = useSelector((state: RootState) => state.loadingPage);
+
 
 
   // ------------------------------- FUNCTIONS ------------------------------- //
@@ -80,15 +83,15 @@ export default function RootLayout({ children }: Readonly<{children: React.React
     })
   }
 
+  const changeMode = () => {
+    document.body.classList.toggle("darkMode")
+  }
 
   // ------------------------------- EFFECTS ------------------------------- //
   useEffect(() => {
     checkUser();
     addPlaidCDN();
   }, [])
-
-  console.log(banksList);
-  
 
   return (
     <main>
@@ -118,6 +121,14 @@ export default function RootLayout({ children }: Readonly<{children: React.React
             }
           </>
         }
+        <div className="changeMode" onClick={changeMode}>
+          <Image
+            src={modeIcon.src}
+            alt="light and dark mode"
+            width="40"
+            height="40"
+          />
+        </div>
     </main>
   );
 }

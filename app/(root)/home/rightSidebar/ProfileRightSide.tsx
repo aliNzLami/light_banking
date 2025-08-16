@@ -14,10 +14,10 @@ function ProfileRightSide({userInfo}: { userInfo: Object }) {
                     </span>
                 </div>
                 <div className="flex flex-col pt-24">
-                    <span className="text-24 font-semibold text-gray-900 text-b&w">
+                    <span className="text-24 font-semibold text-gray-900 txt-darkMode">
                         {userInfo?.name??""}
                     </span>
-                    <p className="text-16 font-normal text-gray-600 text-b&w">
+                    <p className="text-16 font-normal text-gray-600 txt-darkMode">
                         {userInfo?.email??""}
                     </p>
                 </div>

@@ -14,7 +14,7 @@ function CustomInput({ form, name, label, type, placeholder }: InputProps) {
             name={name}
             render={({ field }) => (
             <div className="flex flex-col gap-1.5">
-                <FormLabel className="text-14 w-full max-w-[280px] font-medium text-gray-700">
+                <FormLabel className="text-14 w-full max-w-[280px] font-medium text-gray-700 txt-darkMode">
                     { label }
                 </FormLabel>
                 <div className="flex w-full flex-col">

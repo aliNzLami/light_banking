@@ -45,7 +45,7 @@ function SelectRecieverFundTransfer({goNext, goBack, balance}: {goNext: Function
             state: 'amount',
             className:"amountTransfer",
             title: `Amount`,
-            description: `You have $${balance} in this account`,
+            description: `Only $${balance} in this account`,
             input: {
                 type: 'number',
                 className: 'amountTransferInput',
@@ -81,12 +81,12 @@ function SelectRecieverFundTransfer({goNext, goBack, balance}: {goNext: Function
                         return (
                         <>
                             <div key={item.className} className={item.className}>
-                                <span className="text-[16px] leading-[24px] font-bold text-gray-700 block">
+                                <span className="text-[16px] leading-[24px] font-bold text-gray-700 block txt-darkMode">
                                     { item.title }
                                 </span>
                                 {
                                     item.description &&
-                                    <span className="text-[14px] leading-[20px] font-medium text-gray-600 block">
+                                    <span className="text-[14px] leading-[20px] font-medium text-gray-600 block txt-darkMode">
                                         { item.description }
                                     </span>
                                 }
@@ -109,7 +109,7 @@ function SelectRecieverFundTransfer({goNext, goBack, balance}: {goNext: Function
                 <div className="flex md:justify-between flex-col md:flex-row mt-15">
                     <div className="w-[100%] md:w-[130px]">
                         <button 
-                            className={`w-[100%] mb-5 md:mb-0 text-primary-panel border-primary-panel py-2 rounded py-2 px-3 cursor-pointer`} 
+                            className={`w-[100%] mb-5 md:mb-0 text-primary-panel border-primary-panel py-2 rounded py-2 px-3 cursor-pointer previousBtnDarkMode`} 
                             onClick={goBack}
                         >
                             Previous

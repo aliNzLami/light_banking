@@ -2,20 +2,17 @@
 
 import React, { useState, useEffect } from 'react';
 
-// Modal component
 const Modal = ({ isOpen, onClose, children }: {isOpen: boolean, onClose: Function, children: React.ReactNode }) => {
   const [showModal, setShowModal] = useState(isOpen);
   const [animate, setAnimate] = useState(false);
+  const isDarkMode = document.body.getAttribute('class')?.includes("darkMode");
 
   useEffect(() => {
     if (isOpen) {
       setShowModal(true);
-      // Delay setting animate to true to trigger CSS transition
       setTimeout(() => setAnimate(true), 10);
     } else {
-      // Animate out
       setAnimate(false);
-      // Wait for transition to finish before unmounting
       const timeout = setTimeout(() => setShowModal(false), 300);
       return () => clearTimeout(timeout);
     }
@@ -53,7 +50,7 @@ const Modal = ({ isOpen, onClose, children }: {isOpen: boolean, onClose: Functio
         }
 
         .modal-content {
-          background: #fff;
+          background: ${isDarkMode ? "#0b2555" : "#fff"};
           padding: 20px;
           border-radius: 10px;
           max-width: 542px;
@@ -79,14 +76,14 @@ const Modal = ({ isOpen, onClose, children }: {isOpen: boolean, onClose: Functio
           border: none;
           font-size: 1.5rem;
           cursor: pointer;
-          color: #333;
+          color: ${isDarkMode ? "#fff" : "#000"};
           width: 100%;
           text-align: end;
         }
 
         /* Optional: add hover effect to close button */
         .close-button:hover {
-          color: #000;
+          color: ${isDarkMode ? "#fff" : "#000"};
         }
       `}</style>
     </div>

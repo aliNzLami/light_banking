@@ -93,12 +93,12 @@ function ReviewTransfer({data, submit, goBack}: {data: object, submit: Function,
                         return (
                         <>
                             <div key={item}>
-                                <span className="text-[16px] leading-[24px] font-bold text-gray-700 block">
+                                <span className="text-[16px] leading-[24px] font-bold text-gray-700 block txt-darkMode text-center md:text-start blueText">
                                     { item }
                                 </span>
                             </div>
 
-                            <span key={content[item]}>
+                            <span className="txt-darkMode text-center md:text-start" key={content[item]}>
                                 { content[item] }
                             </span>
                         </>
@@ -111,7 +111,7 @@ function ReviewTransfer({data, submit, goBack}: {data: object, submit: Function,
             <div className="flex md:justify-between flex-col md:flex-row mt-15">
                 <div className="w-[100%] md:w-[130px]">
                     <button 
-                        className={`w-[100%] mb-5 md:mb-0 text-primary-panel border-primary-panel py-2 rounded py-2 px-3 cursor-pointer`} 
+                        className={`w-[100%] mb-5 md:mb-0 text-primary-panel border-primary-panel py-2 rounded py-2 px-3 cursor-pointer previousBtnDarkMode`} 
                         onClick={goBack}
                     >
                         Previous

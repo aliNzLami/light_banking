@@ -5,10 +5,10 @@ function MyBanksList({banksList, onClickCard}: {banksList: array, onClickCard: F
     
     return (
         <>
-            <h2 className="text-[24px] leading-[30px] font-bold block text-b&w text-center md:text-start bankListHeader">
+            <h2 className="text-[24px] leading-[30px] font-bold block text-center md:text-start bankListHeader txt-darkMode">
                 All Bank Accounts List
             </h2>
-            <span className="text-[14px] block text-gray-500 text-b&w text-center md:text-start mt-3">
+            <span className="text-[14px] block text-gray-500 text-center md:text-start mt-3 txt-darkMode">
                 You can see the details and delete any of them.
             </span>
 

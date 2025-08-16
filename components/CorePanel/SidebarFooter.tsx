@@ -26,11 +26,11 @@ function SidebarFooter( { onClickHandler }: { onClickHandler: Function } ) {
             </p>
           </div>
 
-          <div className="flex flex-1 flex-col justify-center text-b&w">
-            <span className="text-[14px] leading-[20px] truncate font-normal text-gray-700 text-b&w font-semibold">
+          <div className="flex flex-1 flex-col justify-center txt-darkMode">
+            <span className="text-[14px] leading-[20px] truncate font-normal text-gray-700 txt-darkMode font-semibold">
               {userInfo?.name??""}
             </span>
-            <span className="text-[14px] leading-[20px] truncate font-normal text-gray-600 text-b&w font-normal">
+            <span className="text-[14px] leading-[20px] truncate font-normal text-gray-600 txt-darkMode font-normal">
               {userInfo?.email??""}
             </span>
           </div>

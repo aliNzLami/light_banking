@@ -7,6 +7,7 @@ import { Inter, IBM_Plex_Serif } from "next/font/google";
 import "../assets/styles/general.css";
 import "../assets/styles/corePanel.css";
 import "../assets/styles/auth.css";
+import "../assets/styles/darkMode.css";
 
 // redux
 import ReduxProvider from "@/lib/redux/provider";
@@ -29,6 +30,7 @@ export const metadata: Metadata = {
     icon: "/assets/icons/logo.png"
   }
 };
+
 
 export default function RootLayout({ children,}: Readonly<{children: React.ReactNode;}>) {
   return (

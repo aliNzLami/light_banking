@@ -14,7 +14,7 @@ function BanksRightSide( { userInfo, banksList} : { userInfo: Object, banksList:
         <>
             <div className="flex flex-col justify-between gap-8 px-6 py-8">
                 <div className="flex w-full justify-between">
-                <span className="text-18 font-semibold text-gray-900 text-b&w">
+                <span className="text-18 font-semibold text-gray-900 txt-darkMode">
                         My Banks
                 </span> 
                 <Link className="flex gap-2" href='/my-banks'>
@@ -24,7 +24,7 @@ function BanksRightSide( { userInfo, banksList} : { userInfo: Object, banksList:
                             width={20}
                             height={20}
                         />
-                        <span className="text-[14px] leading-[20px] font-semibold text-gray-600 text-b&w">
+                        <span className="text-[14px] leading-[20px] font-semibold text-gray-600 txt-darkMode">
                             Add Bank
                         </span>
                 </Link>

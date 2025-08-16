@@ -2,4 +2,10 @@
     --blue1: rgb(0,147,213);
     --blue2: #0747b6;
     --blue2-low-opacity: #0747b60a;
+
+    --darkMode: #041128;
+    --txt-darkMode: #ffffffdc;
+    --dark-blue-darkMode: #05132d;
+    --dark-blue-alternatice-darkMode: #0b2555;
+    --light-blue-darkMode: rgb(0,147,213);
 }

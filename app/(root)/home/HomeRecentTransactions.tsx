@@ -20,10 +20,10 @@ function HomeRecentTransactions({userInfo, banksList}: HomeHeaderProps) {
         
         <div className="flex w-full flex-col gap-6">
             <div className="flex items-center justify-between">
-                <span className="text-20 md:text-24 font-semibold text-gray-900 text-b&w block">
+                <span className="text-20 md:text-24 font-semibold text-gray-900 txt-darkMode block">
                     Recent Transactions
                 </span>
-                <Link href='/transaction-history' className="text-14 rounded-lg border border-gray-300 px-4 py-2.5 font-semibold text-gray-700 text-b&w">
+                <Link href='/transaction-history' className="text-14 rounded-lg border border-gray-300 px-4 py-2.5 font-semibold text-gray-700 txt-darkMode blueBorderDarkMode blueTextDarkMode">
                     View all
                 </Link>
             </div>

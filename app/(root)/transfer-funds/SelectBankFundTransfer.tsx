@@ -122,10 +122,10 @@ function SelectBankFundTransfer({goNext}: {goNext: Function}) {
                 return (
                   <>
                     <div key={item.className} className={item.className}>
-                      <span className="text-[16px] leading-[24px] font-bold text-gray-700 block">
+                      <span className="text-[16px] leading-[24px] font-bold text-gray-700 block txt-darkMode">
                         { item.title }
                       </span>
-                      <span className="text-[14px] leading-[20px] font-medium text-gray-600 block">
+                      <span className="text-[14px] leading-[20px] font-medium text-gray-600 block txt-darkMode">
                           { item.description }
                       </span>
                     </div>

@@ -1,0 +1,134 @@
+@import './colors.css';
+
+body.darkMode {
+    background-color: var(--darkMode);
+    transition: 0.5s;
+}
+
+.darkMode input, .darkMode textarea {
+    color: var(--txt-darkMode);
+}
+
+.darkMode input::placeholder, .darkMode textarea::placeholder {
+    color: #ccc;
+}
+
+.darkMode .noBorderDarkMode {
+    border: none;
+}
+
+.darkMode .blueBorderDarkMode {
+    border-color: var(--light-blue-darkMode);
+}
+
+.darkMode .txt-darkMode {
+    color: var(--txt-darkMode);
+}
+
+.darkMode .darkModeTxt-white {
+    color: white;
+}
+
+.darkMode .blueText {
+    color: var(--light-blue-darkMode);
+}
+
+.darkMode .blueTextDarkMode {
+    color: var(--light-blue-darkMode);
+}
+
+.darkMode .fontLogo {
+    color: var(--light-blue-darkMode);
+}
+
+.darkMode .primaryButton {
+    background-color: var(--light-blue-darkMode);
+}
+
+
+.darkMode .bankListHeader {
+    border-top-color: var(--light-blue-darkMode);
+}
+
+/* auth */
+
+.darkMode .authCard {
+    background-color: var(--dark-blue-darkMode);
+}
+
+/* transaction */
+
+.darkMode .transactioBoxBorder {
+    border: 2px solid var(--light-blue-darkMode);
+}
+
+.darkMode .transactioBoxBg {
+    background-color: var(--light-blue-darkMode);
+}
+
+.darkMode .transactioBoxFont {
+    color: var(--light-blue-darkMode);
+}
+
+/* core panel */
+
+.darkMode .sidebarActive {
+    background-color: var(--light-blue-darkMode);
+}
+
+/* transaction history */
+
+.darkMode .data-\[state\=active\]\:bg-background[data-state="active"] {
+    color: var(--light-blue-darkMode);
+    border-bottom: 3px solid var(--light-blue-darkMode);
+}
+
+.darkMode .transition-\[color\,box-shadow\] {
+    color: var(--txt-darkMode);
+}
+
+.darkMode .bg-table-darkMode {
+    background-color: var(--dark-blue-darkMode);
+}
+
+.darkMode .bg-table-darkMode tr:nth-child(n) {
+    background-color: var(--dark-blue-darkMode);
+}
+
+.darkMode .bg-table-darkMode tr:nth-child(2n) {
+    background-color: var(--dark-blue-alternatice-darkMode);
+}
+
+.darkMode .bg-table-darkMode td, .darkMode .bg-table-darkMode th {
+    border-color: var(--light-blue-darkMode);
+}
+
+.darkModeTransactionsBtn {
+    border-color: var(--txt-darkMode);
+    color: var(--txt-darkMode);
+}
+
+.darkModeTransferBtn {
+    background-color: var(--light-blue-darkMode);
+}
+
+/* transfer funds */
+
+.darkMode .progressTransfer {
+    border: 3px solid var(--light-blue-darkMode);
+    color: var(--light-blue-darkMode);
+}
+
+.darkMode .progressTransfer_active {
+    background-color: var(--light-blue-darkMode);
+    color: #fff;
+}
+
+.darkMode .progressTransfer_active::after {
+    background-color: var(--light-blue-darkMode);
+}
+
+.darkMode .previousBtnDarkMode {
+    color: var(--light-blue-darkMode) !important;
+    border: 3px solid var(--light-blue-darkMode) !important;
+}
