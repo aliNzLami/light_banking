@@ -16,7 +16,7 @@ A modern **banking dashboard** built with **TypeScript** + **Next.js**, featurin
 
 ---
 ## Tech Stack
-- **Frontend:** Next.js 14 (TypeScript)
+- **Frontend:** Next.js 15, React.js 19 (TypeScript)
 - **UI:** TailwindCSS + Shadcn UI
 - **Backend:** Appwrite
 - **Finance API:** Plaid (Transactions, Auth, Transfer API)
