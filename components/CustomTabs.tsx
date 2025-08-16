@@ -1,7 +1,7 @@
 'use client'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-function CustomTabs({list, onClick = () => {}, type = ""}: CustomTabsProps) {
+function CustomTabs({list, onClick = () => {}, type = "", defaultValue}: CustomTabsProps) {
 
     const responsive = {
         superLargeDesktop: {
@@ -24,7 +24,7 @@ function CustomTabs({list, onClick = () => {}, type = ""}: CustomTabsProps) {
     
     return (
         <>
-        <Tabs defaultValue={type === 'bank' ? list[0].$id : list[0].id} className="w-[100%] pb-[20px] overflow-x-auto">
+        <Tabs defaultValue={defaultValue} className="w-[100%] pb-[20px] overflow-x-auto">
             <TabsList>
                     {
                         list.map((item, index) => {

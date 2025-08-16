@@ -211,8 +211,6 @@ export const getBanks_API = async (userId : string) => {
       process.env.APPWRITE_BANK_COLLECTION_ID!,
       [Query.equal('userID', [userId])]
     )
-    console.log(response);
-    
     return response;
 
   } 
@@ -220,84 +218,3 @@ export const getBanks_API = async (userId : string) => {
     console.log(error)
   }
 }
-
-// export const getBank = async (documentId: string) => {
-//   try {
-//     const { database } = await createAdminClient();
-
-//     const bank = await database.listDocuments(
-//       process.env.APPWRITE_DATABASE_ID!,
-//       process.env.APPWRITE_BANK_COLLECTION_ID!,
-//       [Query.equal('$id', [documentId])]
-//     )
-
-//     return parseStringify(bank.documents[0]);
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
-
-// export const getBankByAccountId = async (accountId: string) => {
-//   try {
-//     const { database } = await createAdminClient();
-
-//     const bank = await database.listDocuments(
-//       process.env.APPWRITE_DATABASE_ID!,
-//       process.env.APPWRITE_BANK_COLLECTION_ID!,
-//       [Query.equal('accountId', [accountId])]
-//     )
-
-//     if(bank.total !== 1) return null;
-
-//     return parseStringify(bank.documents[0]);
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
-
-// export const signUp_API = async (userData : signUpParams) => {
-//     const { email, firstName, lastName, password } = userData;
-//     let newUserAccount;
-  
-//     try {
-//       // ------------- Gathering Data
-//       const { account, database } = await createAdminClient();
-//       newUserAccount = await account.create(
-//         ID.unique(), 
-//         email, 
-//         password, 
-//         `${firstName} ${lastName}`
-//       );
-//       if(!newUserAccount) throw new Error('Error creating user')
-      
-  
-//       // ------------- Create Account
-//       const newUser = await database.createDocument(
-//         process.env.APPWRITE_DATABASE_ID!,
-//         process.env.APPWRITE_USER_COLLECTION_ID!,
-//         ID.unique(),
-//         {
-//           ...userData,
-//           userId: newUserAccount.$id,
-//         //   dwollaCustomerId,
-//         //   dwollaCustomerUrl
-//         }
-//       )
-  
-//       // ------------- Sessions & Cookies
-//       const session = await account.createEmailPasswordSession(email, password);
-//       const calledCookie = await cookies();
-//       calledCookie.set("appwrite-session", session.secret, {
-//         path: "/",
-//         httpOnly: true,
-//         sameSite: "strict",
-//         secure: true,
-//       });
-  
-//       return parseStringify(newUser);
-  
-//     } 
-//     catch (error) {
-//       console.error('Error', error);
-//     }
-// }

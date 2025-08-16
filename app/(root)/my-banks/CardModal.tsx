@@ -1,12 +1,22 @@
 'use client'
-import Modal from "@/components/Modal"
-import { capitalizeFirstLetter } from "@/lib/utils"
 import { useState } from "react";
+
+// helper
+import { capitalizeFirstLetter } from "@/lib/utils"
+
+// redux
+import { useDispatch, useSelector } from "react-redux";
+import { setAccountTransfer, setBankHistory } from "@/lib/redux/transactionSlice";
+
+// modal
+import Modal from "@/components/Modal"
+import { redirect } from "next/navigation";
+
 
 function CardModal({showModal, onClose, data, deleteCard}: BankCardMoadlProps ) {
 
+    const dispatch = useDispatch();
     const { account, bank } = data;
-
     const cardInfo = {
         "Official Name": account?.official_name??"", 
         "Institution": bank?.institution??"" ? JSON.parse(bank.institution).institution.name : "" ,
@@ -15,13 +25,22 @@ function CardModal({showModal, onClose, data, deleteCard}: BankCardMoadlProps ) 
         "Balance": `$${account?.balances?.current??"" ? account.balances.current : 0}`, 
         "Card Number": account?.mask??"" ? `**** **** **** ${account.mask}` : "", 
     }
-
     const [ensureModal, setEnsureModal] = useState(false);
 
     const handleDelete = (data: Object) => {
         setEnsureModal(false);
         onClose();
         deleteCard(data);
+    }
+
+    const goToTransactions = () => {
+        dispatch(setBankHistory(bank));
+        redirect('/transaction-history')
+    }
+
+    const goToTransfer = () => {
+        dispatch(setAccountTransfer({bank, account}));
+        redirect('/transfer-funds')
     }
     
     return (
@@ -63,10 +82,20 @@ function CardModal({showModal, onClose, data, deleteCard}: BankCardMoadlProps ) 
                     })
                 }
 
-                <div className="flex justify-center">
-                    <div className="w-[150px]">
-                        <button onClick={() => setEnsureModal(true)} className="mt-10 cursor-pointer focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-                            DELETE CARD 
+                <div className="flex flex-col md:flex-row justify-center items-center md:items-baseline">
+                    <div className="w-[100%] md:w-[150px]">
+                        <button onClick={() => setEnsureModal(true)} className="w-[100%] mt-10 cursor-pointer focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+                            Delete Card
+                        </button>
+                    </div>
+                    <div className="w-[100%] md:w-[180px] md:mx-3">
+                        <button onClick={goToTransactions} className="w-[100%] mt-3 cursor-pointer focus:outline-none text-primary-panel border-primary-panel focus:ring-4 font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+                            Bank Transactions
+                        </button>
+                    </div>
+                    <div className="w-[100%] md:w-[180px]">
+                        <button onClick={goToTransfer} className="w-[100%] mt-3 cursor-pointer focus:outline-none text-white bg-primary-panel focus:ring-4 font-bold rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+                            Transfer Funds
                         </button>
                     </div>
                 </div>

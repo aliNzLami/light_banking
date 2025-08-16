@@ -33,7 +33,7 @@ function Menu({ onClickItem = () => {} }: {onClickItem: Function}) {
         },
         {
           icon: payment_icon,
-          href: "/payment-transfer",
+          href: "/transfer-funds",
           name: "Transfer Funds",
         },
       ];

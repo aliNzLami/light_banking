@@ -1,10 +1,14 @@
 'use client'
 
+// helper
+import { capitalizeFirstLetter } from "@/lib/utils";
+
 // hooks
 import { useEffect, useState } from "react";
 
 // redux
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setBankHistory } from "@/lib/redux/transactionSlice";
 import { RootState } from "@/lib/redux/store";
 
 // component
@@ -12,38 +16,25 @@ import CustomTable from "@/components/CustomTable"
 import CustomTabs from "@/components/CustomTabs";
 import LoadingPage from "@/components/LoadingPage";
 import NoTransaction from "./NoTransaction";
-import { capitalizeFirstLetter } from "@/lib/utils";
 
 
 
 function TransactionHistory() {
 
-    const MOCK = [
-      {
-        transaction_id: "DFSDFSD", 
-        account_id: "FDSFSDF", 
-        category: ['sTH'],
-        amount: 200,
-        date: '2025,08,09',
-        name: 'Shopify',
-        payment_channel: "online"
-      },
-      {
-        transaction_id: "DFSDFSD", 
-        account_id: "FDSFSDF", 
-        category: ['sTH'],
-        amount: 200,
-        date: '2025,08,09',
-        name: 'Shopify',
-        payment_channel: "online"
-      }
-    ]
-
+    const dispatch = useDispatch();
     const banksList = useSelector((state: RootState) => state.bankInfo.banksList);
+    const bankHistory = useSelector((state: RootState) => state.bankHistory.bankHistory);
+    
     const [selectedBank, setSelectedBank] = useState(null);
 
     const selectBank = () => {
-      setSelectedBank({...banksList[0]})
+      if(bankHistory) {
+        setSelectedBank({...bankHistory})
+        dispatch(setBankHistory(null));
+      }
+      else {
+        setSelectedBank({...banksList[0]})
+      }
     } 
 
     const prepareList = () => {
@@ -73,15 +64,16 @@ function TransactionHistory() {
 
     return (
       <section className="p-10">
-            <CustomTabs 
-              list={banksList}
-              onClick={tabsOnClick}
-              type='bank'
-            />
             {
               selectedBank
               ?
                 <>
+                  <CustomTabs 
+                    list={banksList}
+                    onClick={tabsOnClick}
+                    type='bank'
+                    defaultValue={selectedBank?.$id??""}
+                  />
                   {
                     JSON.parse(selectedBank.transactions).length
                     ?

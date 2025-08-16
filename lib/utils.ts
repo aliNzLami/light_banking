@@ -97,6 +97,12 @@ export function capitalizeFirstLetter(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+export function emailValidate(item: string) {
+  const validRule = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const isValid = item.match(validRule);
+  return isValid ? true : false
+}
+
 // ---------------------- CURRENCY ---------------------- //
 
 export function formatAmount(amount: number): string {

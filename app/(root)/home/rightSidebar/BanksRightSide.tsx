@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { redirect } from "next/navigation";
 
 // img
 import Image from "next/image"
@@ -30,7 +31,7 @@ function BanksRightSide( { userInfo, banksList} : { userInfo: Object, banksList:
                 </div>
             </div>
 
-            <div className="relative flex flex-col items-center justify-center gap-5">
+            <div className="relative flex flex-col items-center justify-center gap-5" onClick={() => redirect('/my-banks')}>
                 <div className="relative z-10">
                     <BankCard
                         bankInfo={banksList[0]}

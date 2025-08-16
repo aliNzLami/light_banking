@@ -20,7 +20,7 @@ function TotalBalance({banksList}: object) {
       const data = { 
         datasets: [ 
             {
-                label: `${banksList.length > 1 ? "Banks" : `${JSON.parse(banksList[0].institution).institution.name} Accounts` }`,
+                label: `${banksList.length > 1 ? "Balance" : `${JSON.parse(banksList[0].institution).institution.name} Accounts` }`,
                 data: [],
                 backgroundColor: ['#0747b6', '#2265d8', '#2f91fa']
             }
@@ -66,7 +66,7 @@ function TotalBalance({banksList}: object) {
           </h2>
           <div className="flex flex-col align-center gap-2">
             <p className="text-[14px] leading-[20px] font-medium text-gray-600">
-              Total Currewnt Balance
+              Total Current Balance
             </p>
             <div className="flex-center text-[24px] leading-[30px] lg:text-30 flex-1 font-semibold text-gray-900 gap-2">
               $ <CountUpAnimate number={calculateBalance()} />

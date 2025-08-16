@@ -71,7 +71,15 @@ declare interface BankCardMoadlProps {
 declare interface CustomTabsProps {
     list: array, 
     onClick: Function,
-    type: string
+    type: string,
+    defaultValue: string
 }
 
+declare interface DropDownProps {
+    options: array, 
+    placeholder: string, 
+    boxClassName: string, 
+    boxHolderClassName: string, 
+    afterClick: Function
+}
 

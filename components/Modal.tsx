@@ -56,7 +56,7 @@ const Modal = ({ isOpen, onClose, children }: {isOpen: boolean, onClose: Functio
           background: #fff;
           padding: 20px;
           border-radius: 10px;
-          max-width: 500px;
+          max-width: 542px;
           width: 90%;
           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
           transform: scale(0.95);

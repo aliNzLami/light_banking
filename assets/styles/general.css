@@ -50,6 +50,18 @@ body {
   border-radius: 50%;
 }
 
+.bg-primary-panel {
+  background-color: var(--blue2);
+}
+
+.border-primary-panel {
+  border: 2px solid var(--blue2);
+}
+
+.text-primary-panel {
+  color: var(--blue2);
+}
+
 .bg-blue-gradient {
   background: linear-gradient(var(--blue2), var(--blue1));
 }
@@ -80,7 +92,7 @@ body {
 }
 
 .transition-\[color\,box-shadow\] {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .tableBody_custom tr:nth-child(2n) {
@@ -105,5 +117,109 @@ body {
     width: 100%;
     border: none;
     text-align: center;
+  }
+}
+
+.transferFundGrid {
+    row-gap: 60;
+    grid-template-columns: 1fr 2fr;
+}
+
+@media (max-width: 968px) {
+  .transferFundGrid {
+    row-gap: 10;
+    grid-template-columns: 1fr;
+  }
+}
+
+.transactionTxtArea {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  min-height: 100px;
+}
+
+.recieverFundGrid {
+  row-gap: 50;
+  grid-template-columns: 1fr 4fr;
+}
+
+@media (max-width: 968px) {
+  .recieverFundGrid {
+    row-gap: 10;
+    grid-template-columns: 1fr;
+  }
+}
+
+.progressTransfer {
+  border: 3px solid var(--blue2);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: var(--blue2);
+}
+
+.progressTransfer span {
+  font-size: 21px;
+}
+
+.progressTransfer_active {
+  color: white;
+  background-color: var(--blue2);
+  position: relative;
+}
+
+.progressTransfer_active::after {
+  content: '';
+  display: block;
+  width: 20vw;
+  height: 2px;
+  background-color: var(--blue2);
+  position: absolute;
+  left: 10vw;
+}
+
+.progressTransfer_active:last-child::after {
+  display: none;
+}
+
+@media (max-width: 1438px) {
+  .progressTransfer_active::after {
+    left: 8vw;
+  }
+}
+
+@media (max-width: 1186px) {
+  .progressTransfer_active::after {
+    left: 6vw;
+  }
+}
+
+@media (max-width: 990px) {
+  .progressTransfer_active::after {
+    width: 19vw;
+  }
+}
+
+@media (max-width: 930px) {
+  .progressTransfer_active::after {
+    width: 10vw;
+    left: 9vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .progressTransfer_active::after {
+    width: 27vw;
+  }
+}
+
+@media (max-width: 486px) {
+  .progressTransfer_active::after {
+    width: 20vw;
+    left: 12vw;
   }
 }
