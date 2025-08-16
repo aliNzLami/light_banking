@@ -49,6 +49,7 @@ d. Go on AppWrite:
 - Create two collections: user & bank
 - In user collection, create multipe attributes: (Everything you see on authentication page)
 - In bank collection, create multipe attributes: (Based on Plaid structure)
+- Copy & paste all keys on your .env
 - These APIs will be used on your server-side Next.js application.
 
 e. Come back in the project:
