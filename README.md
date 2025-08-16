@@ -1,4 +1,4 @@
-## Demo 💳 Next.js TypeScript Banking App
+## 💳 Next.js TypeScript Banking App
 
 # Demo
 This app will be deployed a few days later on Netlify.
