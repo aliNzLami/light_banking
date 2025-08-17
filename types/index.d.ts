@@ -83,3 +83,8 @@ declare interface DropDownProps {
     afterClick: Function
 }
 
+declare global {
+    interface Window {
+      Plaid: any; // or a more specific type if available
+    }
+}
