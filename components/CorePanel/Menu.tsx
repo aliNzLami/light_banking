@@ -11,7 +11,7 @@ import myBanks_icon from "@/assets/icons/dollar-circle.svg";
 import transaction_icon from "@/assets/icons/transaction.svg";
 import payment_icon from "@/assets/icons/money-send.svg";
 
-function Menu({ onClickItem = () => {} }: {onClickItem: any}) {
+function Menu({ onClickItem }: {onClickItem: any}) {
     
     const currentURL = usePathname();
 

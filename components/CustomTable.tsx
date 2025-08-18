@@ -1,6 +1,6 @@
 
 
-function CustomTable({list}: array) {
+function CustomTable({list}: any) {
 
     const header =  Object.keys(list[0]).map((item: any) => item);
 
@@ -37,9 +37,10 @@ function CustomTable({list}: array) {
                                                                     ?
                                                                         element[1]
                                                                     :
-                                                                        <span style={{color: element[1].color, fontWeight: "600"}}>
-                                                                            { element[1].title }
-                                                                        </span>
+                                                                        // <span style={{color: element[1].color, fontWeight: "600"}}>
+                                                                        //     { element[1].title }
+                                                                        // </span>
+                                                                        <></>
                                                                 }
                                                             </td>
                                                         )

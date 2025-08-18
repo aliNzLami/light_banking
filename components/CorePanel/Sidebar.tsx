@@ -33,7 +33,9 @@ function Sidebar() {
                       Light Banking
                     </span>
                 </div>
-                <Menu />
+                <Menu 
+                  onClickItem={() => {}}
+                />
             </nav>
 
             <SidebarFooter onClickHandler={() => setShowModal(true)} />
