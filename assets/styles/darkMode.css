@@ -112,6 +112,10 @@ body.darkMode {
     background-color: var(--light-blue-darkMode);
 }
 
+.darkMode .topNav {
+    background-color: var(--dark-blue-alternatice-darkMode);
+}
+
 /* transfer funds */
 
 .darkMode .progressTransfer {

@@ -5,6 +5,7 @@ import Image from 'next/image';
 
 function Offcanvas( { content, isOpen, setIsOpen = () => {} }: OffcanvasProps ) {
 
+  const isDarkMode = document.body.getAttribute('class')?.includes("darkMode");
   const [isVisible, setIsVisible] = useState(false);
 
   const toggleOffcanvas = () => {
@@ -46,7 +47,7 @@ function Offcanvas( { content, isOpen, setIsOpen = () => {} }: OffcanvasProps ) 
             right: 0,
             width: '270px',
             height: '100%',
-            backgroundColor: '#fff',
+            backgroundColor: `${isDarkMode ? "#0b2555" : "#fff"}`,
             boxShadow: '-2px 0 5px rgba(0,0,0,0.3)',
             transform: isOpen ? 'translateX(0)' : 'translateX(100%)',
             transition: 'transform 0.3s ease-in',

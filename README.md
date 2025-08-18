@@ -1,7 +1,7 @@
 ## 💳 Next.js TypeScript Banking App
 
 # Demo
-URL
+[https//www.lightbanking.netlify.app](https://lightbanking.netlify.app/)
 
 # Description
 A modern **banking dashboard** built with **TypeScript** + **Next.js**, featuring:
