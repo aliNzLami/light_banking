@@ -1,7 +1,7 @@
 ## 💳 Next.js TypeScript Banking App
 
 # Demo
-This app will be deployed a few days later on Netlify.
+URL
 
 # Description
 A modern **banking dashboard** built with **TypeScript** + **Next.js**, featuring:
