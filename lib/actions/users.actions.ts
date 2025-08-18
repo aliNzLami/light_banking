@@ -104,7 +104,7 @@ export const signOut_API = async () => {
 
 // ---------------------------- PLAID APIs ---------------------------- //
 
-export const get_linkToken_plaid = async (user: plaidTokenProps, products: Array) => {
+export const get_linkToken_plaid = async (user: plaidTokenProps, products: any) => {
   try {
     const tokenParams = {
       user: {
@@ -152,7 +152,7 @@ export const get_institution_plaid = async (institution_id: string) => {
 
 // ---------------------------- BANK APIs ---------------------------- //
 
-export const createBank_API = async (info : object, updatedAccounts?: array) => {
+export const createBank_API = async (info : any, updatedAccounts?: any) => {
 
   let accounts = []
   if(updatedAccounts) {

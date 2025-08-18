@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from './ui/button'
 
-function SubmitBtn({ isLoading, buttonText, onClick }: {isLoading: boolean, buttonText: string, onClick: Function}) {
+function SubmitBtn({ isLoading, buttonText, onClick }: {isLoading: boolean, buttonText: string, onClick: any}) {
   return (
     <Button className="primaryButton mt-10" type="submit" disabled={isLoading} onClick={onClick}>
         {

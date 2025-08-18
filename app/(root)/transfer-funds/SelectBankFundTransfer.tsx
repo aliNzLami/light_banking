@@ -9,7 +9,14 @@ import { RootState } from "@/lib/redux/store";
 import Dropdown from "@/components/DropDown";
 import { useEffect, useState } from "react";
 
-function SelectBankFundTransfer({goNext}: {goNext: Function}) {
+function SelectBankFundTransfer({goNext}: {goNext: any}) {
+
+    interface SelectedBankTypes {
+      bank: any,
+      accountList: any,
+      account: any,
+      additionalInfo: string
+    }
 
     // ------------------------------ REDUX ------------------------------ //
     const dispatch = useDispatch();
@@ -17,12 +24,12 @@ function SelectBankFundTransfer({goNext}: {goNext: Function}) {
     const accountTransfer = useSelector((state: RootState) => state.bankHistory.accountTransfer);
 
     // ------------------------------ STATES ------------------------------ //
-    const [selectedBank, setSelectedBank] = useState({
+    const [selectedBank, setSelectedBank] = useState<SelectedBankTypes | any>({
       bank: null,
       accountList: [],
       account: null,
       additionalInfo: ''
-    });
+    })
   
     // ------------------------------ VARIABLES ------------------------------ //
     const content = [
@@ -34,7 +41,7 @@ function SelectBankFundTransfer({goNext}: {goNext: Function}) {
           type: 'select',
           className: 'bankSelect',
           placeholder: selectedBank.bank ? JSON.parse(selectedBank.bank.institution).institution.name : 'Select your bank',
-          options: banksList.map(item => JSON.parse(item.institution).institution.name)
+          options: banksList.map((item: any) => JSON.parse(item.institution).institution.name)
         }
       },
       {
@@ -65,17 +72,17 @@ function SelectBankFundTransfer({goNext}: {goNext: Function}) {
 
     const prepareDefault = () => {
       if(accountTransfer) {
-        setSelectedBank(prev => ({
+        setSelectedBank((prev: any) => ({
           ...prev,
           bank: {...accountTransfer.bank},
           account: {...accountTransfer.account},
-          accountList: JSON.parse(accountTransfer.bank.accountsList).map(item => item.name),
+          accountList: JSON.parse(accountTransfer.bank.accountsList).map((item: any) => item.name),
         }))
         dispatch(setAccountTransfer(null))
       }
     }
 
-    const selectHandle = (output: object) => {
+    const selectHandle = (output: any) => {
       if(output.element === 'bankSelect') {
         changeBank(output.selected)
       }
@@ -85,24 +92,24 @@ function SelectBankFundTransfer({goNext}: {goNext: Function}) {
     }
     
     const changeBank = (selectedName: string) => {
-      const bankObj = banksList.filter(item => JSON.parse(item.institution).institution.name === selectedName)[0]
-      setSelectedBank(prev => ({
+      const bankObj = banksList.filter((item: any) => JSON.parse(item.institution).institution.name === selectedName)[0]
+      setSelectedBank((prev: any) => ({
         ...prev,
         bank: {...bankObj},
-        accountList: JSON.parse(bankObj.accountsList).map(item => item.name),
+        accountList: JSON.parse(bankObj.accountsList).map((item: any) => item.name),
         account: null,
       }))
     }
 
     const changeAccount = (selectedName: string) => {
-      setSelectedBank(prev => ({
+      setSelectedBank((prev: any) => ({
         ...prev,
-        account: JSON.parse(selectedBank.bank.accountsList).filter(item => item.name === selectedName)[0]
+        account: JSON.parse(selectedBank.bank.accountsList).filter((item: any) => item.name === selectedName)[0]
       }))
     }
 
     const changeDescription = (txt: string) => {
-      setSelectedBank(prev => ({
+      setSelectedBank((prev: any) => ({
         ...prev,
         additionalInfo: txt
       }))
@@ -118,7 +125,7 @@ function SelectBankFundTransfer({goNext}: {goNext: Function}) {
         <>
           <div className="grid transferFundGrid">
             {
-              content.map(item => {
+              content.map((item: any) => {
                 return (
                   <>
                     <div key={item.className} className={item.className}>
@@ -137,7 +144,7 @@ function SelectBankFundTransfer({goNext}: {goNext: Function}) {
                           <Dropdown
                             options={item.input.options}
                             placeholder={item.input.placeholder}
-                            afterClick={(selected) => selectHandle({selected, element: item.input.className})}
+                            afterClick={(selected: any) => selectHandle({selected, element: item.input.className})}
                           />
                         </div>
                       :

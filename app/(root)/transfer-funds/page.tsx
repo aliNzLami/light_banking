@@ -8,17 +8,21 @@ import TransferProgress from "./TransferProgress";
 
 function TransferFunds() {
 
+  interface Steps {
+    step1: any;
+  }
+
   //  ------------------------- STATES ------------------------- //
 
   const [currentStep, setCurrentStep] = useState(1);
-  const [data, setdata] = useState({});
+  const [data, setdata] = useState<Steps | any>({});
 
 
 
   //  ------------------------- FUNCTIONS ------------------------- //
 
-  const changeData = (output: object) => {
-    setdata(prev => ({
+  const changeData = (output: any) => {
+    setdata((prev: any) => ({
       ...prev,
       [`step${output.step}`]: output.data
     }))
@@ -30,11 +34,11 @@ function TransferFunds() {
   //  ------------------------- CONTENT ------------------------- //
   const content = [
     {
-      component: <SelectBankFundTransfer goNext={(data) => changeData({data, step: 1})} />,
+      component: <SelectBankFundTransfer goNext={(data: any) => changeData({data, step: 1})} />,
       step: 1
     },
     {
-      component: <SelectRecieverFundTransfer goNext={(data) => changeData({data, step: 2})} balance={data?.step1?.account?.balances?.current??""} goBack={() => setCurrentStep(prev => prev - 1)} />,
+      component: <SelectRecieverFundTransfer goNext={(data: any) => changeData({data, step: 2})} balance={data?.step1?.account?.balances?.current??""} goBack={() => setCurrentStep(prev => prev - 1)} />,
       step: 2
     },
     {
@@ -49,13 +53,14 @@ function TransferFunds() {
         <div className="flex flex-col bg-gray-25 md:max-h-screen">
           <HeaderTitle 
             text1='Payment Transfer'
+            text2=""
             description='Please provide any specific details or notes related to the payment transfer'
           />
 
           <TransferProgress current={currentStep} length={content.length} />
 
           {
-            content.map(item => {
+            content.map((item: any) => {
               return(
                 <div key={item.step} className={`size-full mt-15 ${item.step !== currentStep ? "hidden" : ""}`}>
                   { item.component }

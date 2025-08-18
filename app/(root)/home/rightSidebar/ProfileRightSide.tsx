@@ -1,6 +1,6 @@
 import kawakaari from "@/assets/icons/background.jpeg";
 
-function ProfileRightSide({userInfo}: { userInfo: Object }) {
+function ProfileRightSide({userInfo}: { userInfo: any }) {
     return (
         <div className="flex flex-col pb-8">
             <div className="h-[120px] w-full bg-cover bg-no-repeat overflow-hidden">

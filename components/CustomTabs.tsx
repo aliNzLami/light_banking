@@ -27,7 +27,7 @@ function CustomTabs({list, onClick = () => {}, type = "", defaultValue}: CustomT
         <Tabs defaultValue={defaultValue} className="w-[100%] pb-[20px] overflow-x-auto">
             <TabsList>
                     {
-                        list.map((item, index) => {
+                        list.map((item: any, index: number) => {
                             return (
                                 <div key={index}>
                                     <TabsTrigger className="cursor-pointer me-3" value={type === 'bank' ? item.$id : item.id} onClick={() => onClick(item)}> 

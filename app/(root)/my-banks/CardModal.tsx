@@ -17,7 +17,14 @@ function CardModal({showModal, onClose, data, deleteCard}: BankCardMoadlProps ) 
 
     const dispatch = useDispatch();
     const { account, bank } = data;
-    const cardInfo = {
+    const cardInfo: {
+        "Official Name": string, 
+        "Institution": string,
+        "Type": string,
+        "Subtype": string, 
+        "Balance": string,
+        "Card Number": string, 
+    } = {
         "Official Name": account?.official_name??"", 
         "Institution": bank?.institution??"" ? JSON.parse(bank.institution).institution.name : "" ,
         "Type": account?.type??"" ? capitalizeFirstLetter(account.type) : "", 
@@ -27,7 +34,7 @@ function CardModal({showModal, onClose, data, deleteCard}: BankCardMoadlProps ) 
     }
     const [ensureModal, setEnsureModal] = useState(false);
 
-    const handleDelete = (data: Object) => {
+    const handleDelete = (data: any) => {
         setEnsureModal(false);
         onClose();
         deleteCard(data);
@@ -68,18 +75,16 @@ function CardModal({showModal, onClose, data, deleteCard}: BankCardMoadlProps ) 
                 </span>
 
                 {
-                    Object.keys(cardInfo).map(item => {
-                        return (
-                            <div key={item}>
-                                <span className="font-semibold txt-darkMode">
-                                    { `${item}: ` }
-                                </span>
-                                <span className="txt-darkMode">
-                                    { cardInfo[item] }
-                                </span>
-                            </div>
-                        )
-                    })
+                    Object.entries(cardInfo).map(([key, value]) => (
+                        <div key={key}>
+                          <span className="font-semibold txt-darkMode">
+                            {`${key}: `}
+                          </span>
+                          <span className="txt-darkMode">
+                            {value}
+                          </span>
+                        </div>
+                      ))
                 }
 
                 <div className="flex flex-col md:flex-row justify-center items-center md:items-baseline">

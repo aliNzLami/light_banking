@@ -2,7 +2,7 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+const initialState: { isPageLoading: any } = {
     isPageLoading: false
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function NoTransaction({bank}: {bank: object}) {
+function NoTransaction({bank}: {bank: any}) {
   return (
         <div className="w-full h-[100%] min-h-[75vh] flex flex-col lg:flex-row justify-center items-center text-center text-[18px] leading-[22px]">
             <span className="text-gray-500 txt-darkMode mb-3 lg:mb-0">

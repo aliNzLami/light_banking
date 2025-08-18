@@ -1,7 +1,7 @@
 import BankCard from '@/components/BankCard'
 import React from 'react'
 
-function MyBanksList({banksList, onClickCard}: {banksList: array, onClickCard: Function}) {
+function MyBanksList({banksList, onClickCard}: {banksList: any, onClickCard: any}) {
     
     return (
         <>
@@ -14,12 +14,12 @@ function MyBanksList({banksList, onClickCard}: {banksList: array, onClickCard: F
 
             <div className="mb-3 flex flex-col items-center md:items-start flex-wrap mt-8">
             {
-                banksList.map(bank => {
+                banksList.map((bank: any) => {
                 return(
                     <>
                     <div className='mb-3 flex flex-col md:flex-row flex-wrap gap-6' key={bank.$id}>
                         {
-                        JSON.parse(bank.accountsList).map((account, index) => {
+                        JSON.parse(bank.accountsList).map((account: any, index: number) => {
                             return (
                             <div key={index} className="mb-3 flex flex-col md:flex-row flex-wrap" onClick={() => onClickCard({account, bank})}>
                                 <BankCard

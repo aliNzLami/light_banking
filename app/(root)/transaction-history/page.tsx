@@ -21,11 +21,16 @@ import NoTransaction from "./NoTransaction";
 
 function TransactionHistory() {
 
+    interface Bank {
+      transactions: any;
+      $id: string;
+    }
+
     const dispatch = useDispatch();
     const banksList = useSelector((state: RootState) => state.bankInfo.banksList);
     const bankHistory = useSelector((state: RootState) => state.bankHistory.bankHistory);
     
-    const [selectedBank, setSelectedBank] = useState(null);
+    const [selectedBank, setSelectedBank] = useState<Bank | null>(null);
 
     const selectBank = () => {
       if(bankHistory) {
@@ -39,9 +44,9 @@ function TransactionHistory() {
 
     const prepareList = () => {
       if(selectedBank) {
-        const tableList = [];
+        const tableList: string[] = [];
         if(JSON.parse(selectedBank.transactions)) {
-          JSON.parse(selectedBank.transactions).map(item => {
+          JSON.parse(selectedBank.transactions).map((item: any) => {
             tableList.push(item);
           })
         }
@@ -49,7 +54,7 @@ function TransactionHistory() {
       }
     }
 
-    const tabsOnClick = (selected) => {
+    const tabsOnClick = (selected: any) => {
       setSelectedBank({...selected});
     }
 

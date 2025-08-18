@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 
-const Modal = ({ isOpen, onClose, children }: {isOpen: boolean, onClose: Function, children: React.ReactNode }) => {
+const Modal = ({ isOpen, onClose, children }: {isOpen: boolean, onClose: any, children: React.ReactNode }) => {
   const [showModal, setShowModal] = useState(isOpen);
   const [animate, setAnimate] = useState(false);
   const isDarkMode = document.body.getAttribute('class')?.includes("darkMode");

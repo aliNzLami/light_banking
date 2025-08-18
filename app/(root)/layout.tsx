@@ -51,9 +51,9 @@ export default function RootLayout({ children }: Readonly<{children: React.React
     }
   }
 
-  const checkBanks = async (user: object) => {
+  const checkBanks = async (user: any) => {
     await getBanks_API(user.$id)
-    .then(res => {
+    .then((res: any) => {
       if(res?.total != 0) {
         dispatch(setBanks(res.documents))
         dispatch(setPageLoading(false));
@@ -74,7 +74,7 @@ export default function RootLayout({ children }: Readonly<{children: React.React
     document.body.appendChild(script);
   }
 
-  const fetchLinkToken = async (user: object) => {
+  const fetchLinkToken = async (user: any) => {
     await get_linkToken_plaid(user, ['auth', 'transactions', 'identity'])
     .then(res => {
       dispatch(setLinkToken(res.linkToken));

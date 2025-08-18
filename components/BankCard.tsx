@@ -7,7 +7,7 @@ import Image from "next/image"
 import paypassIocn from "@/assets/icons/Paypass.svg";
 import lines from "@/assets/icons/lines.png";
 
-function BankCard({bankInfo, accountNumber}: {bankInfo: Object, accountNumber: number}) {
+function BankCard({bankInfo, accountNumber}: {bankInfo: any, accountNumber: number}) {
 
     const cardInfo = JSON.parse(bankInfo.accountsList);
     const logo = JSON.parse(bankInfo?.institution).institution.logo

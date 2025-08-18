@@ -9,11 +9,18 @@ import { createBank_API, deleteBank_API, getBanks_API } from "@/lib/actions/user
 import { redirect } from "next/navigation";
 import { getFormattedDate } from "@/lib/utils";
 
-function ReviewTransfer({data, submit, goBack}: {data: object, submit: Function, goBack: Function}) {
+function ReviewTransfer({data, submit, goBack}: {data: any, submit: any, goBack: any}) {
 
     const dispatch = useDispatch();
     
-    const content = {
+    const content: {
+        "Your Bank Institution:": string,
+        "Your Account Type:": string,
+        "Your Note:": string,
+        "Receiever's Email:": string,
+        "Receiever's Public Plaid Serial:": string,
+        "Amount of Money:": string,
+    } = {
         "Your Bank Institution:": data?.step1?.bank?.institution ? JSON.parse(data?.step1?.bank?.institution).institution?.name??"" : "",
         "Your Account Type:": data?.step1?.account?.name??"",
         "Your Note:": data?.step1?.additionalInfo??"",
@@ -40,7 +47,7 @@ function ReviewTransfer({data, submit, goBack}: {data: object, submit: Function,
 
     const calculateBalance = () => {
         const allData = prepareData();
-        allData.accounts.map(item => {
+        allData.accounts.map((item: any) => {
             if(item.name === data.step1.account.name) {
                 item.balances.current = item.balances.current - data.step2.amount
             }
@@ -50,7 +57,7 @@ function ReviewTransfer({data, submit, goBack}: {data: object, submit: Function,
 
     
 
-    const transferFund = async (allData: object) => {
+    const transferFund = async (allData: any) => {
         const { accessToken, itemID, userID, userName, $id, institution, accounts, transactions } = allData;
         dispatch(setPageLoading(true));
 
@@ -89,17 +96,17 @@ function ReviewTransfer({data, submit, goBack}: {data: object, submit: Function,
         <>
             <div className="grid recieverFundGrid">
                 {
-                    Object.keys(content).map(item => {
+                    Object.entries(content).map(([key, value]) => {
                         return (
                         <>
-                            <div key={item}>
+                            <div key={key}>
                                 <span className="text-[16px] leading-[24px] font-bold text-gray-700 block txt-darkMode text-center md:text-start blueText">
-                                    { item }
+                                    { key }
                                 </span>
                             </div>
 
-                            <span className="txt-darkMode text-center md:text-start" key={content[item]}>
-                                { content[item] }
+                            <span className="txt-darkMode text-center md:text-start" key={value}>
+                                { value }
                             </span>
                         </>
                         )

@@ -6,9 +6,9 @@ function HomeRecentTransactions({userInfo, banksList}: HomeHeaderProps) {
 
     const prepareTransactions = () => {
         const data = [];
-        for(let bank of banksList) {
+        for(const bank of banksList) {
             if(JSON.parse(bank.transactions)) {
-                for (let transaction of JSON.parse(bank.transactions)) {
+                for (const transaction of JSON.parse(bank.transactions)) {
                     data.push(transaction);
                 }
             }

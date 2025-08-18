@@ -2,19 +2,23 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 
-function Dropdown({ options, placeholder, boxClassName = "", boxHolderClassName="", afterClick= () => {}  }, DropDownProps) {
+function Dropdown({ options, placeholder, afterClick= () => {}  }: DropDownProps) {
     
+    interface refPropos {
+        contains: any;
+    }
+
     // ------------------------ STATE ------------------------ //
     const [selectedOption, setSelectedOption] = useState('');
     const [isOpen, setIsOpen] = useState(false);
-    const dropdownRef = useRef(null);
+    const dropdownRef = useRef<refPropos | any>(null);
     const isDarkMode = document.body.getAttribute('class')?.includes("darkMode");
 
 
     // ------------------------ FUNCTIONS ------------------------ //
     const handleToggle = () => setIsOpen(prev => !prev);
 
-    const handleSelect = (option) => {
+    const handleSelect = (option: string) => {
         afterClick(option);
         setIsOpen(false);
         // setSelectedOption(option)
@@ -23,7 +27,7 @@ function Dropdown({ options, placeholder, boxClassName = "", boxHolderClassName=
     const closeDropDown = () => {
         if (!isOpen) return;
 
-        const handleClickOutside = (event) => {
+        const handleClickOutside = (event: any) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
                 setIsOpen(false);
             }
@@ -41,9 +45,8 @@ function Dropdown({ options, placeholder, boxClassName = "", boxHolderClassName=
     }, [isOpen]);
 
     return (
-        <div className={boxHolderClassName} ref={dropdownRef} style={{ position: 'relative' }}>
+        <div ref={dropdownRef} style={{ position: 'relative' }}>
             <div
-                className={boxClassName}
                 style={{
                     border: '1px solid #ccc',
                     padding: '8px',
@@ -73,7 +76,7 @@ function Dropdown({ options, placeholder, boxClassName = "", boxHolderClassName=
                     }}
                 >
                     {
-                        options.map((option) => (
+                        options.map((option: string) => (
                             <li
                                 key={option}
                                 style={{

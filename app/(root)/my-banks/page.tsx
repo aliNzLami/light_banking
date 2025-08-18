@@ -39,12 +39,12 @@ function MyBanks() {
         dispatch(setPageLoading(true));
         const handler = window.Plaid.create({
           token: linkToken,
-          onSuccess: async (publicToken, metadata) => {
+          onSuccess: async (publicToken: string, metadata: any) => {
             const response = await get_accessToken_plaid(publicToken);
             checkExistingBank({...response}, metadata.institution, metadata.accounts)
             // createBank({...response}, metadata.institution)
           },
-          onExit: (err, metadata) => {
+          onExit: (err: any, metadata: any) => {
             dispatch(setPageLoading(false));
           },
         })
@@ -52,9 +52,9 @@ function MyBanks() {
         handler.exit();
       }
 
-      const checkExistingBank = (tokens: object, institution: object, accounts: array) => {
-        let existedBank = {};
-        banksList.map(item => {
+      const checkExistingBank = (tokens: any, institution: any, accounts: any) => {
+        let existedBank: { accountsList: any } = { accountsList: [] };
+        banksList.map((item: any) => {
           if( JSON.parse(item.institution).institution.name === institution.name ) {
             existedBank = ({...item});
             existedBank.accountsList = [...JSON.parse(existedBank.accountsList), ...accounts];
@@ -69,9 +69,9 @@ function MyBanks() {
         }
       }
 
-      const organiseNewBankAccounts = (token: string, existedBank: object) => {
+      const organiseNewBankAccounts = (token: string, existedBank: any) => {
         const data = existedBank.accountsList;
-        const cleanID = data.map(item => {
+        const cleanID = data.map((item: any) => {
           const newItem = {...item};
           if ('id' in newItem) {
             newItem['account_id'] = newItem['id'];
@@ -82,7 +82,7 @@ function MyBanks() {
 
         // 2. Remove duplicates based on 'account_id'
         const removedRepeatedItem = new Map();
-        cleanID.forEach(item => {
+        cleanID.forEach((item: any) => {
           if (!removedRepeatedItem.has(item.name)) {
             removedRepeatedItem.set(item.name, item);
           }
@@ -92,7 +92,7 @@ function MyBanks() {
         refreshBankAccounts(existedBank)
       }
 
-      const createBank = (tokens: object, institution: object) => {
+      const createBank = (tokens: any, institution: any) => {
           createBank_API({
               accessToken: tokens?.access_token,
               itemID: tokens?.item_id,
@@ -110,20 +110,20 @@ function MyBanks() {
 
 
       // ------------------------------ DELETE FUNCTIONS ------------------------------ //
-      const deleteOnClick = (data: Object) => {
+      const deleteOnClick = (data: any) => {
         const { bank, account } = {...data};
         const newBank = {...bank};
         const allAccounts = JSON.parse(bank.accountsList);
-        let allTransactions = JSON.parse(bank.transactions);
+        const allTransactions = JSON.parse(bank.transactions);
 
         // delete accounts
-        const newAccounts = allAccounts.filter(item => item.account_id != account.account_id);
+        const newAccounts = allAccounts.filter((item: any) => item.account_id != account.account_id);
         newBank.accountsList = JSON.stringify([...newAccounts]);
         
         // delete transactions
         if(allTransactions) {
-          const newObj = [];
-          allTransactions.map(item => {
+          const newObj: string[] = [];
+          allTransactions.map((item: any) => {
             if(item['Your Account Type:'] !== account.name ) {
               newObj.push(item);
             }
@@ -146,7 +146,7 @@ function MyBanks() {
         dispatch(setPageLoading(true));
       }
 
-      const deleteBankAccount = async (bank: object, type: string) => {
+      const deleteBankAccount = async (bank: any, type: string) => {
         if(type === "deletedAccount") {
           bank.accountsList = JSON.parse(bank.accountsList);
           refreshBankAccounts(bank);
@@ -169,7 +169,7 @@ function MyBanks() {
 
       // ------------------------------ SHOWING LIST FUNCTIONS ------------------------------ //
       
-      const refreshBankAccounts = async (bank: object) => {
+      const refreshBankAccounts = async (bank: any) => {
         const { accessToken, itemID, userID, userName, $id, transactions } = bank;
         const institution = JSON.parse(bank.institution).institution;
         const accounts = bank.accountsList;
@@ -229,7 +229,7 @@ function MyBanks() {
           showModal={showModal.show}
           onClose={() => setShowModal({show: false, data: {}})}
           data={showModal.data}
-          deleteCard={(data) => deleteOnClick(data)}
+          deleteCard={(data: any) => deleteOnClick(data)}
         />
         <section className="custom_container">
           <div className="p-10">
@@ -238,7 +238,7 @@ function MyBanks() {
             />
             <MyBanksList 
               banksList={banksList}
-              onClickCard={(data) => setShowModal({show: true, data })}
+              onClickCard={(data: any) => setShowModal({show: true, data })}
             />
           </div>
         </section>

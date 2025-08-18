@@ -1,6 +1,6 @@
 import SubmitBtn from "@/components/SubmitBtn"
 
-function MyBanksHeader({handleClick}: {handleClick: Function}) {
+function MyBanksHeader({handleClick}: {handleClick: any}) {
   return (
     <>
         <h1 className="text-[26px] leading-[32px] font-bold text-center md:text-start txt-darkMode">

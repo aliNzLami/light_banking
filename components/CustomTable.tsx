@@ -2,7 +2,7 @@
 
 function CustomTable({list}: array) {
 
-    const header =  Object.keys(list[0]).map(item => item);
+    const header =  Object.keys(list[0]).map((item: any) => item);
 
     return (
 
@@ -13,7 +13,7 @@ function CustomTable({list}: array) {
                         <thead>
                             <tr>
                                 {
-                                    header.map(item => {
+                                    header.map((item: any) => {
                                         return(
                                             <th key={item} className="border-b border-gray-200 p-4 pt-0 pb-3 pl-8 text-left font-bold text-gray-800 blueText">
                                                 { item }
@@ -25,7 +25,7 @@ function CustomTable({list}: array) {
                         </thead>
                         <tbody className="bg-white bg-table-darkMode tableBody_custom">
                                 {
-                                    list.map((item, index) => {
+                                    list.map((item: any, index: number) => {
                                         return(
                                             <tr key={index}>
                                                 {

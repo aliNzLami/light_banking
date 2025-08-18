@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
 
 
-function SidebarFooter( { onClickHandler }: { onClickHandler: Function } ) {
+function SidebarFooter( { onClickHandler }: { onClickHandler: any } ) {
 
     const userInfo = useSelector((state: RootState) => state.userInfo.value);
 

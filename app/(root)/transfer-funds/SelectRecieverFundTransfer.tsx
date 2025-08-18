@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { emailValidate } from "@/lib/utils";
 
-function SelectRecieverFundTransfer({goNext, goBack, balance}: {goNext: Function, goBack: Function, balance: number}) {
+function SelectRecieverFundTransfer({goNext, goBack, balance}: {goNext: any, goBack: any, balance: number}) {
 
     const [form, setForm] = useState({
         email: '',
@@ -54,7 +54,7 @@ function SelectRecieverFundTransfer({goNext, goBack, balance}: {goNext: Function
         },
       ]
 
-      const changeInput = (output) => {
+      const changeInput = (output: any) => {
         setForm(prev => ({
             ...prev,
             [output.key]: output.value
@@ -77,7 +77,7 @@ function SelectRecieverFundTransfer({goNext, goBack, balance}: {goNext: Function
             <>
                 <div className="grid recieverFundGrid">
                     {
-                    content.map(item => {
+                    content.map((item: any) => {
                         return (
                         <>
                             <div key={item.className} className={item.className}>

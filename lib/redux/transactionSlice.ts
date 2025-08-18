@@ -2,7 +2,7 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+const initialState: { bankHistory: any, accountTransfer: any  } = {
     bankHistory: null,
     accountTransfer: null
 }

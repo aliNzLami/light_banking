@@ -9,7 +9,7 @@ function CustomForm({ inputsList, form, onSubmit, isLoading, buttonText = "Submi
             <form onSubmit={form.handleSubmit(onSubmit)}>
                 <div className="customGrid">
                     {
-                        inputsList.map(item => {
+                        inputsList.map((item: any) => {
                         return (
                             <div className={`${item.name} mb-4`} key={item.name}>
                                 <CustomInput

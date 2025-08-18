@@ -8,7 +8,7 @@ import BankCard from "@/components/BankCard";
 
 
 
-function BanksRightSide( { userInfo, banksList} : { userInfo: Object, banksList: object }) {
+function BanksRightSide( { banksList } : { banksList: any }) {
 
     return (
         <>

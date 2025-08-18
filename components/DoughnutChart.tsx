@@ -4,7 +4,7 @@ import { Doughnut } from "react-chartjs-2"
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
-function DoughnutChart({ data }: DoughnutChartProps) {
+function DoughnutChart({ data }: any) {
     
     // MOCK DATA
     // { 

@@ -6,7 +6,7 @@ function TransferProgress({current, length}: {current: number, length: number}) 
   return (
     <div className='flex justify-between mt-15'>
         {
-            Array.from({length: length}).map((item, index) => {
+            Array.from({length: length}).map((item: any, index: number) => {
                 return(
                     <div className={`progressTransfer ${index >= current ? "" : "progressTransfer_active" }`} key={index}>
                         <span>

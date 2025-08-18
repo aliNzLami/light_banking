@@ -10,7 +10,7 @@ import { signOut_API } from "@/lib/actions/users.actions"
 import Modal from "../Modal"
 import SubmitBtn from "../SubmitBtn"
 
-function LogoutModal({ showModal, setShowModal }: { showModal: boolean, setShowModal: Function }) {
+function LogoutModal({ showModal, setShowModal }: { showModal: boolean, setShowModal: any }) {
 
     const [isLoading, setIsLoading] = useState(false);
 

@@ -8,14 +8,14 @@ import { redirect } from "next/navigation";
 import { RootState } from "@/lib/redux/store";
 
 
-function TransactionItem({transactions}: array) {
+function TransactionItem({transactions}: any) {
   
     const dispatch = useDispatch();
     const banksList = useSelector((state: RootState) => state.bankInfo.banksList);
     
     
-    const handleTransactionClick = (item: object) => {
-      for(let bank of banksList) {
+    const handleTransactionClick = (item: any) => {
+      for(const bank of banksList) {
         if(JSON.parse(bank.institution).institution.name === item['Your Bank Institution:']) {
             dispatch(setBankHistory(bank));
           }
@@ -28,7 +28,7 @@ function TransactionItem({transactions}: array) {
           {
             transactions.length 
             ?
-            transactions.map((item, index) => {
+            transactions.map((item: any, index: number) => {
               return (
                 <div  key={index}
                         onClick={() => handleTransactionClick(item)}

@@ -2,7 +2,7 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+const initialState: {  linkToken: any, publicToken: any, accessToken: any, banksList: any } = {
     linkToken: "",
     publicToken: "",
     accessToken: "",

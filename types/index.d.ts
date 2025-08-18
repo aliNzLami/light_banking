@@ -1,5 +1,12 @@
-import { ReactElement } from "react";
+/* eslint-disable no-unused-vars */
 
+declare type SearchParamProps = {
+    params: { [key: string]: string };
+    searchParams: { [key: string]: string | string[] | undefined };
+  };
+  
+  // ========================================
+  
 declare interface HeaderTitleProps {
     text1: string,
     text2: string,
@@ -7,13 +14,13 @@ declare interface HeaderTitleProps {
 }
 
 declare interface TotalBalanceProps {
-    accounts: array,
+    accounts: any,
     banks: number,
     balance: number
 }
 
 declare interface DoughnutChartProps {
-    accounts: array,
+    accounts: any,
 }
 
 declare type User = {
@@ -36,11 +43,11 @@ declare type User = {
 declare interface OffcanvasProps {
     content: ReactElement,
     isOpen: Boolean,
-    setIsOpen: Function
+    setIsOpen: any
 }
 
 declare interface InputProps {
-    form: Object,
+    form: any,
     name: string,
     label: string,
     placeholder: string,
@@ -48,43 +55,38 @@ declare interface InputProps {
 }
 
 declare interface FormProps {
-    inputsList: array, 
-    onSubmit: Function,
-    form: Object,
+    inputsList: any, 
+    onSubmit: any,
+    form: any,
     isLoading: boolean,
     buttonText: string
 }
 
 declare interface HomeHeaderProps {
-    userInfo: object, 
-    banksList: array, 
-    totalBalance: number
+    userInfo: any, 
+    banksList: any, 
 }
 
 declare interface BankCardMoadlProps {
     showModal: boolean, 
-    onClose: Function, 
-    data: Object,
-    deleteCard: Function
+    onClose: any, 
+    data: any,
+    deleteCard: any
 }
 
 declare interface CustomTabsProps {
-    list: array, 
-    onClick: Function,
+    list: any, 
+    onClick: any,
     type: string,
     defaultValue: string
 }
 
 declare interface DropDownProps {
-    options: array, 
+    options: any, 
     placeholder: string, 
-    boxClassName: string, 
-    boxHolderClassName: string, 
-    afterClick: Function
+    afterClick: any
 }
 
-declare global {
-    interface Window {
-      Plaid: any; // or a more specific type if available
-    }
+interface Window {
+    Plaid: any; // or a more specific type if available
 }

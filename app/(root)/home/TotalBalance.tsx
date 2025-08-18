@@ -2,14 +2,12 @@ import CountUpAnimate from "@/components/CountUpAnimate"
 import DoughnutChart from "@/components/DoughnutChart"
 import { useEffect } from "react";
 
-function TotalBalance({banksList}: object) {
+function TotalBalance({banksList}: any) {
 
-  // console.log(JSON.parse(banksList.accountsList));
-  
   const calculateBalance = () => {
     let sum = 0;
-    for(let bank of banksList) {
-      for(let account of JSON.parse(bank.accountsList)) {
+    for(const bank of banksList) {
+      for(const account of JSON.parse(bank.accountsList)) {
         sum = sum + (account?.balances?.current??"" ? account.balances.current : 0)
       }
     }
@@ -17,37 +15,51 @@ function TotalBalance({banksList}: object) {
   }
 
   const prepareChartData = () => {
-      const data = { 
-        datasets: [ 
-            {
-                label: `${banksList.length > 1 ? "Balance" : `${JSON.parse(banksList[0].institution).institution.name} Accounts` }`,
-                data: [],
-                backgroundColor: ['#0747b6', '#2265d8', '#2f91fa']
-            }
-        ],
-        labels: []
-      }
+
+    const data: {
+      datasets: {
+        label: string,
+        data: any;
+        backgroundColor: string[];
+      }[];
+      labels: string[];
+    } = {
+      datasets: [
+        {
+          label: `${banksList.length > 1 ? "Balance" : `${JSON.parse(banksList[0].institution).institution.name} Accounts` }`,
+          data: [],
+          backgroundColor: ['#0747b6', '#2265d8', '#2f91fa']
+        }
+      ],
+      labels: []
+    }
 
       if(banksList.length > 1) {
-        for(let bank of banksList) {
-          for(let account of JSON.parse(bank.accountsList)) {
-            data.datasets[0].data.push(account?.balances?.current??"")
-            data.labels.push(JSON.parse(bank.institution).institution.name)
+        
+
+        for(const bank of banksList) {
+
+          const accounts = JSON.parse(bank.accountsList) as Array<{
+            balances?: { current?: number | string };
+          }>;
+          const institution = JSON.parse(bank.institution) as { institution: { name: string } };
+          
+          for (const account of accounts) {
+            const currentBalance = account?.balances?.current ?? "";
+            data.datasets[0].data.push(currentBalance);
+            data.labels.push(institution.institution.name);
           }
         }
       }
       else {
         const accounts = JSON.parse(banksList[0].accountsList);
-        for(let account of accounts) {
+        for(const account of accounts) {
           data.datasets[0].data.push(account?.balances?.current??"")
           data.labels.push(account.name)
         }
       }
       return data;
   }
-
-  console.log(banksList);
-  
 
   return (
     <div className="flex align-center justify-center md:justify-start w-full items-center gap-4 rounded-xl border border-gray-200 p-4 shadow-md sm:gap-6 sm:p-6 blueBorderDarkMode">
