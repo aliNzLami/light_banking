@@ -42,7 +42,6 @@ function MyBanks() {
           onSuccess: async (publicToken: string, metadata: any) => {
             const response = await get_accessToken_plaid(publicToken);
             checkExistingBank({...response}, metadata.institution, metadata.accounts)
-            // createBank({...response}, metadata.institution)
           },
           onExit: (err: any, metadata: any) => {
             dispatch(setPageLoading(false));
@@ -53,7 +52,7 @@ function MyBanks() {
       }
 
       const checkExistingBank = (tokens: any, institution: any, accounts: any) => {
-        let existedBank: { accountsList: any } = { accountsList: [] };
+        let existedBank: { accountsList: any | null } = { accountsList: [] };
         banksList.map((item: any) => {
           if( JSON.parse(item.institution).institution.name === institution.name ) {
             existedBank = ({...item});
@@ -61,7 +60,7 @@ function MyBanks() {
           }
         })
 
-        if(Object.keys(existedBank).length) {
+        if(existedBank.accountsList.length) {
           organiseNewBankAccounts(tokens, existedBank);
         }
         else {

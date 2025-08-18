@@ -45,7 +45,7 @@ function SelectRecieverFundTransfer({goNext, goBack, balance}: {goNext: any, goB
             state: 'amount',
             className:"amountTransfer",
             title: `Amount`,
-            description: `Only $${balance} in this account`,
+            description: `Only $${balance ? balance : 0} in this account`,
             input: {
                 type: 'number',
                 className: 'amountTransferInput',

@@ -103,12 +103,12 @@ body.darkMode {
     border-color: var(--light-blue-darkMode);
 }
 
-.darkModeTransactionsBtn {
+.darkMode .darkModeTransactionsBtn {
     border-color: var(--txt-darkMode);
     color: var(--txt-darkMode);
 }
 
-.darkModeTransferBtn {
+.darkMode .darkModeTransferBtn {
     background-color: var(--light-blue-darkMode);
 }
 
