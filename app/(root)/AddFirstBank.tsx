@@ -3,7 +3,7 @@ import { useState } from "react";
 
 // img
 import Image from "next/image"
-import logo from "@/assets/icons/logo.jpg"
+import logo from "@/assets/icons/logo.jpeg"
 
 // redux
 import { useSelector } from "react-redux";
@@ -60,9 +60,6 @@ function AddFirstBank() {
                 <div className="shadow-lg p-30">
                 <header className="flex flex-col items-center gap-5 md:gap-8 mb-10">
                     <div className="flex flex-col items-end justify-center">
-                        <h1 className="fontLogo">
-                            Light Banking
-                        </h1>
                         <Image 
                             className="rounded shadow-md"
                             alt="One More Light Logo" 

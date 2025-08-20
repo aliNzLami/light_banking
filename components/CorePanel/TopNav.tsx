@@ -3,7 +3,7 @@
 // img
 import Image from "next/image";
 import Link from "next/link";
-import logo from "@/assets/icons/logo.jpg";
+import logo from "@/assets/icons/logo.jpeg";
 
 // hooks
 import { useState } from "react";

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   title: "One More Light",
   description: "One more light out for banking platform in everyone's hands.",
   icons: {
-    icon: "/assets/icons/logo.png"
+    icon: "/assets/icons/logo.jpeg"
   }
 };
 
