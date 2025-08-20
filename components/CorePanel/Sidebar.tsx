@@ -5,7 +5,7 @@ import { useState } from "react";
 
 // img
 import Image from "next/image";
-import logo from "@/assets/icons/logo.jpeg"
+import logo from "@/assets/icons/logo_pure.jpeg"
 
 
 // components
@@ -28,7 +28,10 @@ function Sidebar() {
         <div className="sidebar shadow-md flex flex-col justify-between">
             <nav className="flex flex-col gap-4">
                 <div className="sidebar_Logo items-center justify-center">
-                    <Image alt="One More Light Logo" src={logo.src} width={80} height={70} />
+                    <Image className="rounded" alt="One More Light Logo" src={logo.src} width={50} height={60} />
+                    <span className="ms-3 fontLogo">
+                      Light Banking
+                    </span>
                 </div>
                 <Menu 
                   onClickItem={() => {}}

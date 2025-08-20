@@ -3,7 +3,7 @@
 // img
 import Image from "next/image";
 import Link from "next/link";
-import logo from "@/assets/icons/logo.jpeg";
+import logo from "@/assets/icons/logo_pure.jpeg";
 
 // hooks
 import { useState } from "react";
@@ -32,7 +32,7 @@ function TopNav() {
             <div className="topNav flex justify-between align-center shadow-md">
                 <Link href='./' className="cursor-pointer items-center gap-2">
                     <div className="topNav_Logo">
-                        <Image alt="One More Light Logo" src={logo.src} width={65} height={55} />
+                        <Image className="rounded" alt="One More Light Logo" src={logo.src} width={65} height={55} />
                     </div>
                 </Link>
 

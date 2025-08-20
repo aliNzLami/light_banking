@@ -54,6 +54,7 @@ body.darkMode {
 
 .darkMode .authCard {
     background-color: var(--dark-blue-darkMode);
+    box-shadow: 0px 0px 3px 3px var(--light-blue-darkMode);
 }
 
 /* transaction */

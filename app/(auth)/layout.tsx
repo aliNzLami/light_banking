@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 // components
 import LoadingPage from "@/components/LoadingPage";
+import DarkMode from "@/components/DarkMode";
 
 
 export default function RootLayout({children}: Readonly<{ children: React.ReactNode;}>) {
@@ -38,6 +39,8 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
               { children }
             </>
         }
+
+        <DarkMode />
       </main>
     );
   }

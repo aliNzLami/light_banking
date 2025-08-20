@@ -1,8 +1,5 @@
 'use client'
 
-import Image from "next/image";
-import modeIcon from "@/assets/icons/lightdark.png";
-
 // api
 import { get_linkToken_plaid, getBanks_API } from "@/lib/actions/users.actions";
 
@@ -22,6 +19,7 @@ import { setPageLoading } from "@/lib/redux/loadingSlice";
 import LoadingPage from "@/components/LoadingPage";
 import CorePanel from "@/components/CorePanel/CorePanel";
 import AddFirstBank from "./AddFirstBank";
+import DarkMode from "@/components/DarkMode";
 
 
 // Roadmap
@@ -83,10 +81,6 @@ export default function RootLayout({ children }: Readonly<{children: React.React
     })
   }
 
-  const changeMode = () => {
-    document.body.classList.toggle("darkMode")
-  }
-
   // ------------------------------- EFFECTS ------------------------------- //
   useEffect(() => {
     checkUser();
@@ -121,14 +115,7 @@ export default function RootLayout({ children }: Readonly<{children: React.React
             }
           </>
         }
-        <div className="changeMode" onClick={changeMode}>
-          <Image
-            src={modeIcon.src}
-            alt="light and dark mode"
-            width="40"
-            height="40"
-          />
-        </div>
+        <DarkMode />
     </main>
   );
 }
