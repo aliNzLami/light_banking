@@ -47,11 +47,12 @@ function Dropdown({ options, placeholder, afterClick= () => {}  }: DropDownProps
     return (
         <div ref={dropdownRef} style={{ position: 'relative' }}>
             <div
+                className='dropDownPlaceHolder'
                 style={{
                     border: '1px solid #ccc',
                     padding: '8px',
                     cursor: 'pointer',
-                    backgroundColor: `'#fff'`,
+                    // backgroundColor: `'#fff'`,
                     fontSize: '16px'
                 }}
                 onClick={handleToggle}
@@ -61,14 +62,14 @@ function Dropdown({ options, placeholder, afterClick= () => {}  }: DropDownProps
 
             {isOpen && (
                 <ul
+                    className='dropDownList'
                     style={{
                         listStyle: 'none',
                         margin: 0,
                         padding: 0,
                         border: '1px solid #000',
-                        maxHeight: '',
                         overflowY: 'auto',
-                        backgroundColor: '#fff',
+                        // backgroundColor: '#fff',
                         position: 'absolute',
                         width: 'max-content',
                         zIndex: 1,
@@ -78,6 +79,7 @@ function Dropdown({ options, placeholder, afterClick= () => {}  }: DropDownProps
                     {
                         options.map((option: string) => (
                             <li
+                                className='dropDownItem'
                                 key={option}
                                 style={{
                                     padding: '15px 8px',

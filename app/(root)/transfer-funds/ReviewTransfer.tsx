@@ -1,13 +1,23 @@
 'use client'
 
 // redux
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/lib/redux/store";
-import { setLinkToken, setBanks } from "@/lib/redux/bankSlice";
+import { useDispatch } from "react-redux";
+import { setBanks } from "@/lib/redux/bankSlice";
 import { setPageLoading } from "@/lib/redux/loadingSlice";
+
+// api
 import { createBank_API, deleteBank_API, getBanks_API } from "@/lib/actions/users.actions";
+
+// route
 import { redirect } from "next/navigation";
+
+// helper
 import { getFormattedDate } from "@/lib/utils";
+
+// components
+import { toast } from "react-toastify";
+
+
 
 function ReviewTransfer({data, submit, goBack}: {data: any, submit: any, goBack: any}) {
 
@@ -62,6 +72,9 @@ function ReviewTransfer({data, submit, goBack}: {data: any, submit: any, goBack:
         dispatch(setPageLoading(true));
 
         await deleteBank_API($id)
+        .then(res => {
+            toast.info('Please wait.');
+        })
         .catch(err => {
           console.log(err);
         })
@@ -70,6 +83,7 @@ function ReviewTransfer({data, submit, goBack}: {data: any, submit: any, goBack:
             { accessToken, itemID, userID, userName, institution, transactions }, accounts
         )
         .then(res => {
+            toast.success('Fund successfully transfered.');
             updateList();
         })
         .catch(err => {

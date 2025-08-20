@@ -14,6 +14,7 @@ import { createBank_API, get_accessToken_plaid } from "@/lib/actions/users.actio
 
 // components
 import SubmitBtn from "@/components/SubmitBtn"
+import { toast } from 'react-toastify';
 
 
 function AddFirstBank() {
@@ -27,6 +28,7 @@ function AddFirstBank() {
             token: linkToken,
             onSuccess: async (publicToken: string, metadata: any) => {
                 const response = await get_accessToken_plaid(publicToken);
+                toast.info('Please wait.');
                 createBank({...response}, metadata.institution)
             },
             onExit: (err: any, metadata: any) => {
@@ -47,6 +49,7 @@ function AddFirstBank() {
             institution,
         })
         .then(res => {
+            toast.success('Bank successfully created');
             window.location.reload();
         })
         .catch(err => {

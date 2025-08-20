@@ -249,3 +249,17 @@ input::placeholder {
 .borderBottomCharts {
   border-bottom: 1px solid rgba(0, 0, 0, 0.14);
 }
+
+.dropDownPlaceHolder {
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.dropDownList {
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.dropDownItem {
+  background-color: #fff;
+}

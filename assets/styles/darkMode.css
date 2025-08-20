@@ -80,11 +80,25 @@ body.darkMode {
     color: var(--light-blue-darkMode);
 }
 
+.darkMode .Toastify__toast {
+    background-color: var(--light-blue-darkMode);
+    color: #fff;
+    font-weight: bold;
+}
+
 /* core panel */
 
 .darkMode .sidebarActive {
     background-color: var(--light-blue-darkMode);
 }
+
+.darkMode .sidebar {
+    border-right: 1px solid var(--dark-blue-alternatice-darkMode);
+} 
+
+.darkMode .rightAside {
+    border-left: 1px solid var(--dark-blue-alternatice-darkMode);
+} 
 
 /* transaction history */
 
@@ -145,6 +159,23 @@ body.darkMode {
 .darkMode .previousBtnDarkMode {
     color: var(--light-blue-darkMode) !important;
     border: 3px solid var(--light-blue-darkMode) !important;
+}
+
+.darkMode .dropDownPlaceHolder {
+    background-color: var(--dark-blue-alternatice-darkMode);
+    color: var(--txt-darkMode);
+    border-radius: 5px;
+}
+  
+.darkMode .dropDownList {
+    background-color: var(--dark-blue-alternatice-darkMode);
+    color: var(--txt-darkMode);
+    border-radius: 5px;
+}
+  
+.darkMode .dropDownItem {
+    background-color: var(--dark-blue-alternatice-darkMode);
+    color: var(--txt-darkMode);
 }
 
 /* statics */

@@ -16,6 +16,8 @@ import { setPageLoading } from "@/lib/redux/loadingSlice";
 import MyBanksHeader from "./MyBanksHeader";
 import MyBanksList from "./MyBanksList";
 import CardModal from "./CardModal";
+import { toast } from 'react-toastify';
+
 
 function MyBanks() {
 
@@ -41,7 +43,8 @@ function MyBanks() {
           token: linkToken,
           onSuccess: async (publicToken: string, metadata: any) => {
             const response = await get_accessToken_plaid(publicToken);
-            checkExistingBank({...response}, metadata.institution, metadata.accounts)
+            checkExistingBank({...response}, metadata.institution, metadata.accounts);
+            toast.info('Please wait.');
           },
           onExit: (err: any, metadata: any) => {
             dispatch(setPageLoading(false));
@@ -101,6 +104,7 @@ function MyBanks() {
           })
           .then(res => {
             updateList()
+            toast.success('Bank successfully is created.');
           })
           .catch(err => {
               dispatch(setPageLoading(false));
@@ -153,6 +157,7 @@ function MyBanks() {
         else {
           await deleteBank_API(bank.$id)
           .then(res => {
+            toast.success('Bank deleted');
             if(banksList.length === 1) {
               window.location.reload()
             }
@@ -185,6 +190,7 @@ function MyBanks() {
           { accessToken, itemID, userID, userName, institution, transactions }, accounts
         )
         .then(res => {
+          toast.success('Operation done.');
           updateList();
         })
         .catch(err => {
