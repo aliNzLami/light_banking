@@ -10,6 +10,7 @@ import home_icon from "@/assets/icons/home.svg";
 import myBanks_icon from "@/assets/icons/dollar-circle.svg";
 import transaction_icon from "@/assets/icons/transaction.svg";
 import payment_icon from "@/assets/icons/money-send.svg";
+import statics_icon from "@/assets/icons/chart.png";
 
 function Menu({ onClickItem }: {onClickItem: any}) {
     
@@ -30,6 +31,11 @@ function Menu({ onClickItem }: {onClickItem: any}) {
           icon: transaction_icon,
           href: "/transaction-history",
           name: "Transaction History",
+        },
+        {
+            icon: statics_icon,
+            href: "/statics",
+            name: "Charts & Statics",
         },
         {
           icon: payment_icon,

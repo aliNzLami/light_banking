@@ -57,7 +57,7 @@ function AddFirstBank() {
     return (
         <section className="flex-center size-full max-sm:px-6">
             <div className="flex min-h-screen w-full flex-col justify-center items-center gap-5 md:gap-8">
-                <div className="shadow-lg p-30">
+                <div className="shadow-lg p-10 lg:p-30 fistBankCard">
                 <header className="flex flex-col items-center gap-5 md:gap-8 mb-10">
                     <div className="flex flex-col items-end justify-center">
                         <Image 
@@ -69,8 +69,8 @@ function AddFirstBank() {
                         />
                     </div>
                 </header>
-                    <span className="text-[24px] leading-[30px] lg:text-[36px] lg:leading-[44px] font-semibold text-center block">
-                        Add Your First Bank
+                    <span className="text-[20px] lg:text-[36px] lg:leading-[44px] font-semibold text-center block">
+                        Your First Bank
                     </span>
                     <SubmitBtn
                         isLoading={isLoading}
@@ -79,6 +79,7 @@ function AddFirstBank() {
                     />
                 </div>
             </div>
+            <div className="backgroundWave" />
         </section>
     )
 }

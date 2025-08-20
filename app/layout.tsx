@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { ToastContainer } from 'react-toastify';
+
 // fonts
 import { Inter, IBM_Plex_Serif } from "next/font/google";
 
@@ -40,6 +42,7 @@ export default function RootLayout({ children,}: Readonly<{children: React.React
         >
           <ReduxProvider>
             {children}
+            <ToastContainer />
           </ReduxProvider>
         </body>
       </html>

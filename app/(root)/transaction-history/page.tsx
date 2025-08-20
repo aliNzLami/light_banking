@@ -1,8 +1,5 @@
 'use client'
 
-// helper
-import { capitalizeFirstLetter } from "@/lib/utils";
-
 // hooks
 import { useEffect, useState } from "react";
 

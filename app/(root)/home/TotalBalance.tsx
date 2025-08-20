@@ -1,5 +1,6 @@
 import CountUpAnimate from "@/components/CountUpAnimate"
 import DoughnutChart from "@/components/DoughnutChart"
+import { redirect } from "next/navigation";
 import { useEffect } from "react";
 
 function TotalBalance({banksList}: any) {
@@ -62,7 +63,7 @@ function TotalBalance({banksList}: any) {
   }
 
   return (
-    <div className="flex align-center justify-center md:justify-start w-full items-center gap-4 rounded-xl border border-gray-200 p-4 shadow-md sm:gap-6 sm:p-6 blueBorderDarkMode">
+    <div onClick={() => redirect('/statics')} className="cursor-pointer flex align-center justify-center md:justify-start w-full items-center gap-4 rounded-xl border border-gray-200 p-4 shadow-md sm:gap-6 sm:p-6 blueBorderDarkMode">
         <div className="flex size-full max-w-[100px] items-center sm:max-w-[120px]">
             <DoughnutChart data={ prepareChartData() } />
         </div>
